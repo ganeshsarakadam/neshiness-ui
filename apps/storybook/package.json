@@ -1,0 +1,18 @@
+{
+  "name": "@neshiness-ui/storybook",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^8.2.9",
+    "@storybook/addon-essentials": "^8.2.9",
+    "@storybook/react-vite": "^8.2.9",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.5.4"
+  }
+}
