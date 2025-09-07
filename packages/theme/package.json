@@ -12,7 +12,8 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./orange-black.css": "./styles/orange-black.css"
+    "./orange-black.css": "./styles/orange-black.css",
+    "./orange-light.css": "./styles/orange-light.css"
   },
   "files": ["dist", "styles", "README.md", "LICENSE"],
   "sideEffects": ["*.css"],

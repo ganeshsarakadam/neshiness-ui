@@ -25,17 +25,17 @@ const base = {
 
 const variants: Record<ButtonVariant, React.CSSProperties> = {
   solid: {
-    color: 'var(--color-bg)',
+    color: 'white',
     backgroundColor: 'var(--color-accent)',
     border: '1px solid var(--color-accent)',
   },
   outline: {
-    color: 'var(--color-text)',
+    color: 'var(--color-accent)',
     backgroundColor: 'transparent',
     border: '1px solid var(--color-accent)',
   },
   ghost: {
-    color: 'var(--color-text)',
+    color: 'var(--color-accent)',
     backgroundColor: 'transparent',
     border: '1px solid transparent'
   }
@@ -60,13 +60,31 @@ export const Button: React.FC<ButtonProps> = ({ variant = 'solid', size = 'md', 
       style={styleMerged}
       onMouseEnter={(e) => {
         const el = e.currentTarget;
-        if (variant === 'solid') el.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--color-accent-hover').trim();
-        if (variant === 'outline' || variant === 'ghost') el.style.backgroundColor = 'rgba(255,255,255,0.04)';
+        if (variant === 'solid') {
+          el.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--color-accent-hover').trim();
+        }
+        if (variant === 'outline') {
+          el.style.backgroundColor = 'var(--color-accent)';
+          el.style.color = 'white';
+        }
+        if (variant === 'ghost') {
+          el.style.backgroundColor = 'var(--color-accent)';
+          el.style.color = 'white';
+        }
       }}
       onMouseLeave={(e) => {
         const el = e.currentTarget;
-        if (variant === 'solid') el.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--color-accent').trim();
-        if (variant === 'outline' || variant === 'ghost') el.style.backgroundColor = 'transparent';
+        if (variant === 'solid') {
+          el.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--color-accent').trim();
+        }
+        if (variant === 'outline') {
+          el.style.backgroundColor = 'transparent';
+          el.style.color = 'var(--color-accent)';
+        }
+        if (variant === 'ghost') {
+          el.style.backgroundColor = 'transparent';
+          el.style.color = 'var(--color-accent)';
+        }
       }}
       {...rest}
     >

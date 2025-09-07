@@ -1,11 +1,11 @@
-:root[data-theme=\orange-black\],:root{
+:root[data-theme="orange-black"],:root{
   --color-bg:#0B0B0C;
   --color-surface:#151517;
   --color-muted:#2A2A2E;
   --color-text:#EDEDEF;
-  --color-accent:#FF7A00;
-  --color-accent-hover:#FF8F26;
-  --color-accent-active:#CC6200;
+  --color-accent:#FF8A1F;
+  --color-accent-hover:#FF9F3F;
+  --color-accent-active:#E55A00;
   --radius-sm:4px;
   --radius-md:8px;
   --radius-lg:12px;
