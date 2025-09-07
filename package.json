@@ -1,0 +1,16 @@
+{
+  "name": "@neshiness-ui/monorepo",
+  "private": true,
+  "packageManager": "pnpm@9",
+  "scripts": {
+    "build": "pnpm -r --filter ./packages/* run build",
+    "dev": "pnpm -C apps/storybook run dev",
+    "release": "pnpm changeset publish",
+    "version-packages": "pnpm changeset version",
+    "changeset": "changeset"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.7",
+    "typescript": "^5.5.4"
+  }
+}

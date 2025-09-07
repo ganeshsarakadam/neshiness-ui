@@ -1,0 +1,25 @@
+:root[data-theme=\orange-black\],:root{
+  --color-bg:#0B0B0C;
+  --color-surface:#151517;
+  --color-muted:#2A2A2E;
+  --color-text:#EDEDEF;
+  --color-accent:#FF7A00;
+  --color-accent-hover:#FF8F26;
+  --color-accent-active:#CC6200;
+  --radius-sm:4px;
+  --radius-md:8px;
+  --radius-lg:12px;
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:20px;
+  --space-6:24px;
+  --space-7:32px;
+  --space-8:40px;
+  --shadow-1:0 1px 2px rgba(0,0,0,0.3);
+  --shadow-2:0 4px 8px rgba(0,0,0,0.35);
+  --shadow-3:0 8px 16px rgba(0,0,0,0.4);
+  --font-sans:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+  --font-mono:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
