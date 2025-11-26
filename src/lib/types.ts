@@ -1,4 +1,4 @@
-import { type ReactNode, type ComponentPropsWithoutRef } from "react";
+import { type ReactNode, type ComponentPropsWithoutRef, type ElementType } from "react";
 import type { JSX } from "react";
 
 /**
@@ -113,7 +113,7 @@ export interface AccessibleProps {
 /**
  * Common prop combinations for different component types
  */
-export interface ButtonProps extends 
+export interface ButtonProps extends
   BaseComponentProps,
   DisableableProps,
   LoadingProps,
@@ -121,9 +121,9 @@ export interface ButtonProps extends
   VariantProps,
   AppearanceProps,
   InteractiveProps,
-  AccessibleProps {}
+  AccessibleProps { }
 
-export interface InputProps extends 
+export interface InputProps extends
   BaseComponentProps,
   DisableableProps,
   ErrorProps,
@@ -138,7 +138,7 @@ export interface InputProps extends
   type?: "text" | "email" | "password" | "number" | "tel" | "url" | "search";
 }
 
-export interface CardProps extends 
+export interface CardProps extends
   BaseComponentProps,
   SizableProps,
   VariantProps,
@@ -152,8 +152,8 @@ export interface CardProps extends
  * Utility type for creating polymorphic component props
  * Allows components to render as different HTML elements
  */
-export type PolymorphicProps<T extends ElementType = "div", P = {}> = 
-  P & 
+export type PolymorphicProps<T extends ElementType = "div", P = object> =
+  P &
   Omit<ComponentPropsWithoutRef<T>, keyof P> & {
     as?: T;
   };
@@ -161,14 +161,14 @@ export type PolymorphicProps<T extends ElementType = "div", P = {}> =
 /**
  * Utility type for creating forward ref props
  */
-export type ForwardRefProps<T extends HTMLElement, P = {}> = P & {
+export type ForwardRefProps<T extends HTMLElement, P = object> = P & {
   ref?: React.Ref<T>;
 };
 
 /**
  * Utility type for creating component props with forwarded ref
  */
-export type ComponentPropsWithRef<T extends ElementType = "div", P = {}> = 
+export type ComponentPropsWithRef<T extends ElementType = "div", P = object> =
   PolymorphicProps<T, P> & ForwardRefProps<HTMLElement, P>;
 
 /**

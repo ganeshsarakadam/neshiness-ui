@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { Textarea } from './textarea'
 
 const meta = {
@@ -125,16 +125,16 @@ export const WithCharacterCount: Story = {
     <div className="space-y-4 w-80">
       <div>
         <label className="text-sm font-medium mb-2 block">With Character Count</label>
-        <Textarea 
-          placeholder="Type your message..." 
+        <Textarea
+          placeholder="Type your message..."
           maxLength={100}
           showCount
         />
       </div>
       <div>
         <label className="text-sm font-medium mb-2 block">Longer Limit</label>
-        <Textarea 
-          placeholder="Describe your project..." 
+        <Textarea
+          placeholder="Describe your project..."
           maxLength={500}
           showCount
         />
@@ -156,16 +156,16 @@ export const AutoResize: Story = {
     <div className="space-y-4 w-80">
       <div>
         <label className="text-sm font-medium mb-2 block">Auto Resize</label>
-        <Textarea 
-          placeholder="This textarea will grow as you type..." 
+        <Textarea
+          placeholder="This textarea will grow as you type..."
           autoResize
           rows={3}
         />
       </div>
       <div>
         <label className="text-sm font-medium mb-2 block">Fixed Height</label>
-        <Textarea 
-          placeholder="This textarea has a fixed height..." 
+        <Textarea
+          placeholder="This textarea has a fixed height..."
           rows={4}
         />
       </div>
@@ -226,10 +226,10 @@ export const FormExamples: Story = {
     <div className="space-y-6 w-80">
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">Contact Form</h3>
-        
+
         <div>
           <label className="text-sm font-medium mb-2 block">Your Message</label>
-          <Textarea 
+          <Textarea
             placeholder="Tell us what you think..."
             maxLength={500}
             showCount
@@ -237,22 +237,22 @@ export const FormExamples: Story = {
           />
         </div>
       </div>
-      
+
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">Feedback Form</h3>
-        
+
         <div>
           <label className="text-sm font-medium mb-2 block">Comments</label>
-          <Textarea 
+          <Textarea
             placeholder="Share your feedback..."
             autoResize
             rows={3}
           />
         </div>
-        
+
         <div>
           <label className="text-sm font-medium mb-2 block">Additional Notes</label>
-          <Textarea 
+          <Textarea
             placeholder="Any additional information..."
             variant="success"
             rows={2}

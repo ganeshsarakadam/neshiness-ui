@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
  * Checkbox component variants using class-variance-authority
  */
 const checkboxVariants = cva(
-  "peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground transition-all duration-200",
+  "peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground transition-all duration-200 cursor-pointer",
   {
     variants: {
       size: {
@@ -35,7 +35,7 @@ const checkboxVariants = cva(
  */
 export interface CheckboxProps
   extends React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>,
-    VariantProps<typeof checkboxVariants> {
+  VariantProps<typeof checkboxVariants> {
   /**
    * Label for the checkbox
    */
@@ -72,17 +72,17 @@ export interface CheckboxProps
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
   CheckboxProps
->(({ 
-  className, 
-  size, 
-  variant, 
-  label, 
-  helperText, 
-  errorMessage, 
-  error, 
+>(({
+  className,
+  size,
+  variant,
+  label,
+  helperText,
+  errorMessage,
+  error,
   required,
   disabled,
-  ...props 
+  ...props
 }, ref) => {
   const checkboxVariant = error ? "destructive" : variant;
 

@@ -7,45 +7,33 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Tabs } from "@/components/ui/tabs";
 import { Accordion } from "@/components/ui/accordion";
 import { Separator, Divider } from "@/components/ui/separator";
-import { 
-  Layout, 
-  LayoutHeader, 
-  LayoutMain, 
-  LayoutSidebar, 
+import {
+  Layout,
+  LayoutMain,
+  LayoutSidebar,
   LayoutContent,
-  Container 
+  Container
 } from "@/components/ui/layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { useState } from "react";
-import { 
-  Home, 
-  Users, 
-  Settings, 
-  FileText, 
-  BarChart3, 
-  Mail, 
-  Bell, 
+import Link from "next/link";
+import {
+  Home,
+  Users,
+  Settings,
+  FileText,
+  BarChart3,
+  Mail,
+  Bell,
   Search,
-  Menu,
-  ChevronDown,
-  Star,
-  Heart,
-  Download,
-  Share,
   Edit,
-  Trash2,
-  Plus,
   User,
-  LogOut,
-  HelpCircle,
-  Info
+  LogOut
 } from "lucide-react";
 
 export default function NavigationPage() {
   const [isDark, setIsDark] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleTheme = () => {
     setIsDark(!isDark);
@@ -223,7 +211,7 @@ export default function NavigationPage() {
       content: (
         <div className="space-y-2">
           <p>
-            This is a comprehensive component library built with React, TypeScript, and Tailwind CSS. 
+            This is a comprehensive component library built with React, TypeScript, and Tailwind CSS.
             It provides a set of reusable, accessible, and customizable UI components for building modern web applications.
           </p>
           <p>
@@ -302,13 +290,13 @@ function App() {
                 {isDark ? "☀️" : "🌙"} Toggle Dark
               </Button>
               <Button asChild variant="outline">
-                <a href="/">🏠 Home</a>
+                <Link href="/">🏠 Home</Link>
               </Button>
               <Button asChild variant="outline">
-                <a href="/components">🧩 Components</a>
+                <Link href="/components">🧩 Components</Link>
               </Button>
               <Button asChild variant="outline">
-                <a href="/forms">📝 Forms</a>
+                <Link href="/forms">📝 Forms</Link>
               </Button>
             </div>
           </div>
@@ -318,7 +306,7 @@ function App() {
       {/* Main Content */}
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto space-y-16">
-          
+
           {/* Theme Switcher */}
           <section className="text-center space-y-4">
             <h2 className="text-3xl font-bold">Theme Switcher</h2>
@@ -719,14 +707,14 @@ function App() {
                       <p className="text-sm text-muted-foreground">Max width: 2xl (672px)</p>
                     </div>
                   </Container>
-                  
+
                   <Container size="md" centered>
                     <div className="p-6 border rounded-lg text-center">
                       <h3 className="font-semibold mb-2">Medium Container</h3>
                       <p className="text-sm text-muted-foreground">Max width: 4xl (896px)</p>
                     </div>
                   </Container>
-                  
+
                   <Container size="lg" centered>
                     <div className="p-6 border rounded-lg text-center">
                       <h3 className="font-semibold mb-2">Large Container</h3>

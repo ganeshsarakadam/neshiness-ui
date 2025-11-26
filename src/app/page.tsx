@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
   const [isDark, setIsDark] = useState(false);
@@ -27,13 +28,13 @@ export default function Home() {
                 {isDark ? "☀️" : "🌙"} Toggle Dark
               </Button>
               <Button asChild variant="outline">
-                <a href="/components">🧩 Components</a>
+                <Link href="/components">🧩 Components</Link>
               </Button>
               <Button asChild variant="outline">
-                <a href="/forms">📝 Forms</a>
+                <Link href="/forms">📝 Forms</Link>
               </Button>
               <Button asChild variant="outline">
-                <a href="/navigation">🧭 Navigation</a>
+                <Link href="/navigation">🧭 Navigation</Link>
               </Button>
             </div>
           </div>
@@ -43,7 +44,7 @@ export default function Home() {
       {/* Main Content */}
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto space-y-16">
-          
+
           {/* Theme Switcher */}
           <section className="text-center space-y-4">
             <h2 className="text-3xl font-bold">Theme Switcher</h2>
@@ -143,12 +144,12 @@ export default function Home() {
 
               <div className="bg-accent/50 border border-border rounded-lg p-4 mt-4">
                 <p className="text-sm">
-                  <strong>Current Font:</strong> Apple SF Pro (system fonts) • 
-                  <strong> Sans-serif:</strong> SF Pro Display/Text • 
+                  <strong>Current Font:</strong> Apple SF Pro (system fonts) •
+                  <strong> Sans-serif:</strong> SF Pro Display/Text •
                   <strong>Monospace:</strong> SF Mono
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Automatically uses Apple's fonts on Apple devices, falls back to system fonts on other platforms
+                  Automatically uses Apple&apos;s fonts on Apple devices, falls back to system fonts on other platforms
                 </p>
               </div>
             </div>
@@ -164,7 +165,7 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[1, 2, 3, 4, 6, 8, 12, 16].map((space) => (
                 <div key={space} className="space-y-2">
-                  <div 
+                  <div
                     className="bg-primary rounded"
                     style={{ height: `${space * 4}px` }}
                   ></div>

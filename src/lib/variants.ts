@@ -18,7 +18,7 @@ export type VariantVariants = "default" | "outline" | "ghost" | "link" | "destru
  */
 export const sizeVariants = {
   xs: "h-6 px-2 text-xs",
-  sm: "h-8 px-3 text-sm", 
+  sm: "h-8 px-3 text-sm",
   md: "h-10 px-4 text-base",
   lg: "h-12 px-6 text-lg",
   xl: "h-14 px-8 text-xl",
@@ -40,6 +40,7 @@ export const colorVariants = {
 /**
  * Utility type for extracting variant props from a variant function
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type VariantPropsOf<T extends (...args: any) => any> = VariantProps<T>;
 
 /**
@@ -48,23 +49,23 @@ export type VariantPropsOf<T extends (...args: any) => any> = VariantProps<T>;
 export const baseStyles = {
   // Interactive elements
   interactive: "transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-  
+
   // Disabled state
   disabled: "disabled:pointer-events-none disabled:opacity-50",
-  
+
   // Layout
   flex: "inline-flex items-center justify-center gap-2",
   flexRow: "flex flex-row items-center gap-2",
   flexCol: "flex flex-col gap-2",
-  
+
   // Spacing
   container: "container mx-auto px-4",
   section: "space-y-6",
-  
+
   // Borders and radius
   rounded: "rounded-lg",
   bordered: "border border-border",
-  
+
   // Shadows
   shadow: "shadow-sm",
   shadowHover: "hover:shadow-md transition-shadow duration-200",

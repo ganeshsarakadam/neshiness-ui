@@ -13,10 +13,10 @@ export function cn(...inputs: ClassValue[]) {
  * Creates a compound variant function that combines multiple variant systems
  * Useful for components that need both size and color variants
  */
-export function createCompoundVariants<T extends Record<string, any>>(
+export function createCompoundVariants<T extends Record<string, unknown>>(
   variants: T,
   compoundVariants?: Array<{
-    [K in keyof T]?: T[K] extends Record<string, any> ? keyof T[K] : never;
+    [K in keyof T]?: T[K] extends Record<string, unknown> ? keyof T[K] : never;
   } & { class: string }>
 ) {
   return { variants, compoundVariants };
@@ -59,7 +59,7 @@ export function animation(type: "fade" | "slide" | "scale" | "bounce", direction
     scale: "animate-in zoom-in-95 duration-300",
     bounce: "animate-in bounce-in duration-500",
   };
-  
+
   return animations[type];
 }
 
@@ -72,7 +72,7 @@ export function focusRing(color: "default" | "primary" | "destructive" = "defaul
     primary: "focus-visible:ring-primary",
     destructive: "focus-visible:ring-destructive",
   };
-  
+
   return `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${colors[color]}`;
 }
 

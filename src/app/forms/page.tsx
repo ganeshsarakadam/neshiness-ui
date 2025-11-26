@@ -2,22 +2,22 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { SelectField } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup } from "@/components/ui/radio-group";
 import { Switch } from "@/components/ui/switch";
-import { 
-  Form, 
-  FormField, 
-  FormActions, 
-  FormSection 
+import {
+  Form,
+  FormField,
+  FormActions,
+  FormSection
 } from "@/components/ui/form";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { useState } from "react";
-import { Mail, Lock, User, Phone, MapPin, Calendar, Search, Eye, EyeOff } from "lucide-react";
+import Link from "next/link";
+import { Mail, Lock, User, Phone, Calendar, Search, Eye, EyeOff } from "lucide-react";
 
 export default function FormsPage() {
   const [isDark, setIsDark] = useState(false);
@@ -49,7 +49,7 @@ export default function FormsPage() {
     alert("Form submitted! Check console for data.");
   };
 
-  const handleInputChange = (field: string, value: any) => {
+  const handleInputChange = (field: string, value: string | boolean | number) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
@@ -84,13 +84,13 @@ export default function FormsPage() {
                 {isDark ? "☀️" : "🌙"} Toggle Dark
               </Button>
               <Button asChild variant="outline">
-                <a href="/">🏠 Home</a>
+                <Link href="/">🏠 Home</Link>
               </Button>
               <Button asChild variant="outline">
-                <a href="/components">🧩 Components</a>
+                <Link href="/components">🧩 Components</Link>
               </Button>
               <Button asChild variant="outline">
-                <a href="/navigation">🧭 Navigation</a>
+                <Link href="/navigation">🧭 Navigation</Link>
               </Button>
             </div>
           </div>
@@ -100,7 +100,7 @@ export default function FormsPage() {
       {/* Main Content */}
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto space-y-12">
-          
+
           {/* Theme Switcher */}
           <section className="text-center space-y-4">
             <h2 className="text-3xl font-bold">Theme Switcher</h2>
@@ -127,15 +127,15 @@ export default function FormsPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Form 
+                <Form
                   onSubmit={handleSubmit}
                   title=""
                   description=""
                   className="space-y-6"
                 >
                   {/* Personal Information Section */}
-                  <FormSection 
-                    title="Personal Information" 
+                  <FormSection
+                    title="Personal Information"
                     description="Tell us about yourself"
                   >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -200,8 +200,8 @@ export default function FormsPage() {
                   </FormSection>
 
                   {/* Account Settings Section */}
-                  <FormSection 
-                    title="Account Settings" 
+                  <FormSection
+                    title="Account Settings"
                     description="Configure your account preferences"
                   >
                     <FormField label="Password" required>
@@ -245,8 +245,8 @@ export default function FormsPage() {
                   </FormSection>
 
                   {/* Preferences Section */}
-                  <FormSection 
-                    title="Preferences" 
+                  <FormSection
+                    title="Preferences"
                     description="Customize your experience"
                   >
                     <div className="space-y-4">
@@ -304,42 +304,42 @@ export default function FormsPage() {
                   <CardDescription>Various input field states and variants</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <Input 
-                    label="Default Input" 
+                  <Input
+                    label="Default Input"
                     placeholder="Enter text here"
                     helperText="This is helper text"
                   />
-                  
-                  <Input 
-                    label="Input with Icon" 
+
+                  <Input
+                    label="Input with Icon"
                     placeholder="Search..."
                     leftIcon={<Search className="h-4 w-4" />}
                   />
-                  
-                  <Input 
-                    label="Required Input" 
+
+                  <Input
+                    label="Required Input"
                     placeholder="This field is required"
                     required
                     error
                     errorMessage="This field is required"
                   />
-                  
-                  <Input 
-                    label="Success Input" 
+
+                  <Input
+                    label="Success Input"
                     placeholder="This input is valid"
                     success
                     successMessage="Great! This looks good"
                   />
-                  
-                  <Input 
-                    label="Disabled Input" 
+
+                  <Input
+                    label="Disabled Input"
                     placeholder="This input is disabled"
                     disabled
                     value="Cannot edit this"
                   />
-                  
-                  <Input 
-                    label="Loading Input" 
+
+                  <Input
+                    label="Loading Input"
                     placeholder="This input is loading"
                     loading
                     value="Processing..."
@@ -354,33 +354,33 @@ export default function FormsPage() {
                   <CardDescription>Dropdown selection with various states</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <SelectField 
-                    label="Default Select" 
+                  <SelectField
+                    label="Default Select"
                     placeholder="Choose an option"
                     options={countries.slice(0, 4)}
                     helperText="Select your preferred option"
                   />
-                  
-                  <SelectField 
-                    label="Required Select" 
+
+                  <SelectField
+                    label="Required Select"
                     placeholder="This field is required"
                     required
                     error
                     errorMessage="Please select an option"
                     options={countries.slice(0, 3)}
                   />
-                  
-                  <SelectField 
-                    label="Success Select" 
+
+                  <SelectField
+                    label="Success Select"
                     placeholder="This selection is valid"
                     success
                     successMessage="Perfect choice!"
                     options={countries.slice(0, 3)}
                     value="us"
                   />
-                  
-                  <SelectField 
-                    label="Disabled Select" 
+
+                  <SelectField
+                    label="Disabled Select"
                     placeholder="This select is disabled"
                     disabled
                     options={countries.slice(0, 3)}
@@ -396,29 +396,29 @@ export default function FormsPage() {
                   <CardDescription>Multi-line text input with auto-resize</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <Textarea 
-                    label="Default Textarea" 
+                  <Textarea
+                    label="Default Textarea"
                     placeholder="Enter your message here"
                     helperText="This textarea auto-resizes"
                   />
-                  
-                  <Textarea 
-                    label="Textarea with Character Count" 
+
+                  <Textarea
+                    label="Textarea with Character Count"
                     placeholder="Type something..."
                     maxLength={100}
                     showCharCount
                     helperText="Maximum 100 characters"
                   />
-                  
-                  <Textarea 
-                    label="Error Textarea" 
+
+                  <Textarea
+                    label="Error Textarea"
                     placeholder="This textarea has an error"
                     error
                     errorMessage="This field cannot be empty"
                   />
-                  
-                  <Textarea 
-                    label="Disabled Textarea" 
+
+                  <Textarea
+                    label="Disabled Textarea"
                     placeholder="This textarea is disabled"
                     disabled
                     value="Cannot edit this content"
@@ -437,18 +437,18 @@ export default function FormsPage() {
                     <h4 className="text-sm font-medium">Checkboxes</h4>
                     <Checkbox label="Default checkbox" />
                     <Checkbox label="Required checkbox" required />
-                    <Checkbox 
-                      label="Error checkbox" 
-                      error 
+                    <Checkbox
+                      label="Error checkbox"
+                      error
                       errorMessage="This checkbox is required"
                     />
                     <Checkbox label="Success checkbox" variant="success" />
                     <Checkbox label="Disabled checkbox" disabled />
                   </div>
-                  
+
                   <div className="space-y-4">
                     <h4 className="text-sm font-medium">Radio Groups</h4>
-                    <RadioGroup 
+                    <RadioGroup
                       label="Choose your preference"
                       options={[
                         { value: "a", label: "Option A" },
@@ -456,8 +456,8 @@ export default function FormsPage() {
                         { value: "c", label: "Option C" }
                       ]}
                     />
-                    
-                    <RadioGroup 
+
+                    <RadioGroup
                       label="Choose your level"
                       error
                       errorMessage="Please select a level"
@@ -474,32 +474,32 @@ export default function FormsPage() {
                   <CardDescription>Toggle switches with descriptions</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <Switch 
-                    label="Default Switch" 
+                  <Switch
+                    label="Default Switch"
                     description="Toggle this setting"
                   />
-                  
-                  <Switch 
-                    label="Success Switch" 
+
+                  <Switch
+                    label="Success Switch"
                     description="This switch is enabled"
                     variant="success"
                   />
-                  
-                  <Switch 
-                    label="Error Switch" 
+
+                  <Switch
+                    label="Error Switch"
                     description="This switch has an error"
                     error
                     errorMessage="This setting is required"
                   />
-                  
-                  <Switch 
-                    label="Disabled Switch" 
+
+                  <Switch
+                    label="Disabled Switch"
                     description="This switch is disabled"
                     disabled
                   />
-                  
-                  <Switch 
-                    label="Large Switch" 
+
+                  <Switch
+                    label="Large Switch"
                     description="This is a large switch"
                     size="lg"
                   />
@@ -517,20 +517,20 @@ export default function FormsPage() {
                     <FormField label="Valid Field" success successMessage="This field is valid">
                       <Input value="Valid input" success />
                     </FormField>
-                    
+
                     <FormField label="Error Field" error errorMessage="This field has an error">
                       <Input value="Invalid input" error />
                     </FormField>
-                    
+
                     <FormField label="Helper Field" helperText="This field has helper text">
                       <Input placeholder="Type something" />
                     </FormField>
                   </Form>
-                  
+
                   <div className="p-4 border border-success/20 bg-success/10 rounded-lg">
                     <p className="text-sm text-success font-medium">✓ Form submitted successfully!</p>
                   </div>
-                  
+
                   <div className="p-4 border border-destructive/20 bg-destructive/10 rounded-lg">
                     <p className="text-sm text-destructive font-medium">⚠ Please fix the errors above</p>
                   </div>

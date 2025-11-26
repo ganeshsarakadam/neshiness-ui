@@ -1,20 +1,18 @@
 import type { Metadata } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-// TODO: Font Customization
-// Current: Using Apple's SF Pro system fonts
-// To customize fonts later:
-// 1. Import Google Fonts: import { Inter, JetBrains_Mono } from "next/font/google";
-// 2. Create font objects with variable names
-// 3. Add to body className
-// 4. Update CSS variables in globals.css
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
 
-// Apple SF Pro system fonts - automatically uses SF Pro on Apple devices
-// Falls back to system fonts on other platforms
-const appleFonts = {
-  sans: "--font-apple-sans",
-  mono: "--font-apple-mono",
-};
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -29,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${appleFonts.sans} ${appleFonts.mono} antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
       >
         {children}
       </body>

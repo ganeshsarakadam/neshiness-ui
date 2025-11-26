@@ -1,0 +1,179 @@
+/* Blue Theme - Only applies when .blue-theme class is present on html element */
+:root.blue-theme {
+  /* Border Radius */
+  --radius: 0.625rem;
+
+  /* Base Colors - Blue Theme */
+  --background: oklch(0.98 0.01 240);
+  /* Very light blue-white */
+  --foreground: oklch(0.15 0.01 240);
+  /* Dark blue-gray */
+
+  /* Card Colors */
+  --card: oklch(1 0 0);
+  /* Pure white */
+  --card-foreground: oklch(0.15 0.01 240);
+  /* Dark blue-gray */
+
+  /* Popover Colors */
+  --popover: oklch(1 0 0);
+  /* Pure white */
+  --popover-foreground: oklch(0.15 0.01 240);
+  /* Dark blue-gray */
+
+  /* Primary Brand Colors - Blue Theme */
+  --primary: oklch(0.45 0.15 240);
+  /* Medium blue */
+  --primary-foreground: oklch(0.98 0.01 240);
+  /* Light blue-white */
+
+  /* Secondary Colors */
+  --secondary: oklch(0.92 0.05 240);
+  /* Light blue-gray */
+  --secondary-foreground: oklch(0.25 0.05 240);
+  /* Darker blue-gray */
+
+  /* Muted Colors */
+  --muted: oklch(0.94 0.03 240);
+  /* Very light blue */
+  --muted-foreground: oklch(0.55 0.05 240);
+  /* Medium blue-gray */
+
+  /* Accent Colors */
+  --accent: oklch(0.92 0.05 240);
+  /* Light blue-gray */
+  --accent-foreground: oklch(0.25 0.05 240);
+  /* Darker blue-gray */
+
+  /* Semantic Colors */
+  --destructive: oklch(0.55 0.2 15);
+  /* Red-orange */
+  --destructive-foreground: oklch(0.98 0.01 240);
+  /* Light blue-white */
+  --success: oklch(0.55 0.15 140);
+  /* Green */
+  --success-foreground: oklch(0.98 0.01 240);
+  /* Light blue-white */
+  --warning: oklch(0.75 0.15 60);
+  /* Yellow */
+  --warning-foreground: oklch(0.15 0.01 240);
+  /* Dark blue-gray */
+  --info: oklch(0.5 0.15 240);
+  /* Blue (matches primary) */
+  --info-foreground: oklch(0.98 0.01 240);
+  /* Light blue-white */
+
+  /* Border & Input Colors */
+  --border: oklch(0.88 0.05 240);
+  /* Light blue border */
+  --input: oklch(0.88 0.05 240);
+  /* Light blue input */
+  --ring: oklch(0.45 0.15 240);
+  /* Blue focus ring */
+
+  /* Chart Colors */
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+
+  /* Sidebar Colors */
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.45 0.15 240);
+  /* Blue primary for sidebar */
+  --sidebar-primary-foreground: oklch(0.98 0.01 240);
+  --sidebar-accent: oklch(0.92 0.05 240);
+  --sidebar-accent-foreground: oklch(0.25 0.05 240);
+  --sidebar-border: oklch(0.88 0.05 240);
+  --sidebar-ring: oklch(0.45 0.15 240);
+}
+
+:root.blue-theme.dark {
+  /* Base Colors - Dark Blue Theme */
+  --background: oklch(0.08 0.02 240);
+  /* Very dark blue */
+  --foreground: oklch(0.95 0.02 240);
+  /* Light blue-white */
+
+  /* Card Colors */
+  --card: oklch(0.12 0.03 240);
+  /* Dark blue */
+  --card-foreground: oklch(0.95 0.02 240);
+  /* Light blue-white */
+
+  /* Popover Colors */
+  --popover: oklch(0.12 0.03 240);
+  /* Dark blue */
+  --popover-foreground: oklch(0.95 0.02 240);
+  /* Light blue-white */
+
+  /* Primary Brand Colors - Light Blue for Dark Mode */
+  --primary: oklch(0.7 0.12 240);
+  /* Light blue */
+  --primary-foreground: oklch(0.08 0.02 240);
+  /* Very dark blue */
+
+  /* Secondary Colors */
+  --secondary: oklch(0.18 0.05 240);
+  /* Dark blue-gray */
+  --secondary-foreground: oklch(0.95 0.02 240);
+  /* Light blue-white */
+
+  /* Muted Colors */
+  --muted: oklch(0.18 0.05 240);
+  /* Dark blue-gray */
+  --muted-foreground: oklch(0.65 0.05 240);
+  /* Medium blue-gray */
+
+  /* Accent Colors */
+  --accent: oklch(0.18 0.05 240);
+  /* Dark blue-gray */
+  --accent-foreground: oklch(0.95 0.02 240);
+  /* Light blue-white */
+
+  /* Semantic Colors */
+  --destructive: oklch(0.65 0.18 15);
+  /* Red-orange */
+  --destructive-foreground: oklch(0.95 0.02 240);
+  /* Light blue-white */
+  --success: oklch(0.65 0.15 140);
+  /* Green */
+  --success-foreground: oklch(0.08 0.02 240);
+  /* Very dark blue */
+  --warning: oklch(0.8 0.15 60);
+  /* Yellow */
+  --warning-foreground: oklch(0.08 0.02 240);
+  /* Very dark blue */
+  --info: oklch(0.7 0.12 240);
+  /* Light blue */
+  --info-foreground: oklch(0.08 0.02 240);
+  /* Very dark blue */
+
+  /* Border & Input Colors */
+  --border: oklch(0.25 0.05 240);
+  /* Dark blue border */
+  --input: oklch(0.25 0.05 240);
+  /* Dark blue input */
+  --ring: oklch(0.7 0.12 240);
+  /* Light blue focus ring */
+
+  /* Chart Colors */
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+
+  /* Sidebar Colors */
+  --sidebar: oklch(0.12 0.03 240);
+  --sidebar-foreground: oklch(0.95 0.02 240);
+  --sidebar-primary: oklch(0.7 0.12 240);
+  /* Light blue for sidebar */
+  --sidebar-primary-foreground: oklch(0.08 0.02 240);
+  --sidebar-accent: oklch(0.18 0.05 240);
+  --sidebar-accent-foreground: oklch(0.95 0.02 240);
+  --sidebar-border: oklch(0.25 0.05 240);
+  --sidebar-ring: oklch(0.7 0.12 240);
+}

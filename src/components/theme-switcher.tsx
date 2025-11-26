@@ -4,14 +4,16 @@ import { Button } from "@/components/ui/button";
 
 export function ThemeSwitcher() {
   const switchToNeutralTheme = () => {
-    // Remove any theme class and let globals.css handle the default theme
-    document.documentElement.className = '';
+    // Remove blue-theme class but keep dark mode if active
+    const isDark = document.documentElement.classList.contains('dark');
+    document.documentElement.className = isDark ? 'dark' : '';
     console.log('Switched to neutral theme, classes:', document.documentElement.className);
   };
 
   const switchToBlueTheme = () => {
-    // Add blue-theme class to apply blue theme
-    document.documentElement.className = 'blue-theme';
+    // Add blue-theme class and keep dark mode if active
+    const isDark = document.documentElement.classList.contains('dark');
+    document.documentElement.className = `blue-theme${isDark ? ' dark' : ''}`;
     console.log('Switched to blue theme, classes:', document.documentElement.className);
   };
 

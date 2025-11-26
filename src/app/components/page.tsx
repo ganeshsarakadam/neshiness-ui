@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarGroup } from "@/components/ui/avatar";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function ComponentsPage() {
   const [isDark, setIsDark] = useState(false);
@@ -38,13 +39,13 @@ export default function ComponentsPage() {
                 {isDark ? "☀️" : "🌙"} Toggle Dark
               </Button>
               <Button asChild variant="outline">
-                <a href="/">🏠 Home</a>
+                <Link href="/">🏠 Home</Link>
               </Button>
               <Button asChild variant="outline">
-                <a href="/forms">📝 Forms</a>
+                <Link href="/forms">📝 Forms</Link>
               </Button>
               <Button asChild variant="outline">
-                <a href="/navigation">🧭 Navigation</a>
+                <Link href="/navigation">🧭 Navigation</Link>
               </Button>
 
             </div>
@@ -55,7 +56,7 @@ export default function ComponentsPage() {
       {/* Main Content */}
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto space-y-16">
-          
+
           {/* Theme Switcher Demo */}
           <section className="space-y-6">
             <div className="text-center">
@@ -128,10 +129,10 @@ export default function ComponentsPage() {
               </Card>
 
               {/* Interactive Card */}
-              <Card 
-                variant="primary" 
-                size="lg" 
-                interactive 
+              <Card
+                variant="primary"
+                size="lg"
+                interactive
                 onClick={() => alert('Card clicked!')}
               >
                 <CardHeader>
@@ -166,8 +167,8 @@ export default function ComponentsPage() {
               </Card>
 
               {/* Card with Built-in Title */}
-              <Card 
-                title="Built-in Title" 
+              <Card
+                title="Built-in Title"
                 description="This card has a title and description built into the component"
                 footer={<Button size="sm">Learn More</Button>}
               >
@@ -312,20 +313,20 @@ export default function ComponentsPage() {
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold">With Images</h3>
                 <div className="flex flex-wrap items-center gap-4">
-                  <Avatar 
+                  <Avatar
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
-                    alt="John Doe" 
-                    fallback="JD" 
+                    alt="John Doe"
+                    fallback="JD"
                   />
-                  <Avatar 
+                  <Avatar
                     src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face"
-                    alt="Jane Smith" 
-                    fallback="JS" 
+                    alt="Jane Smith"
+                    fallback="JS"
                   />
-                  <Avatar 
+                  <Avatar
                     src="" // This will show fallback
-                    alt="Bob Johnson" 
-                    fallback="BJ" 
+                    alt="Bob Johnson"
+                    fallback="BJ"
                   />
                 </div>
               </div>
@@ -336,7 +337,7 @@ export default function ComponentsPage() {
                 <div className="space-y-4">
                   <div>
                     <p className="text-sm text-muted-foreground mb-2">Basic group (max 3)</p>
-                    <AvatarGroup 
+                    <AvatarGroup
                       avatars={sampleAvatars}
                       max={3}
                       size="md"
@@ -344,7 +345,7 @@ export default function ComponentsPage() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground mb-2">Large group (max 5)</p>
-                    <AvatarGroup 
+                    <AvatarGroup
                       avatars={sampleAvatars}
                       max={5}
                       size="lg"
@@ -367,10 +368,10 @@ export default function ComponentsPage() {
               <Card>
                 <CardHeader>
                   <div className="flex items-center gap-4">
-                    <Avatar 
+                    <Avatar
                       src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
-                      alt="John Doe" 
-                      fallback="JD" 
+                      alt="John Doe"
+                      fallback="JD"
                       size="lg"
                     />
                     <div>
@@ -406,7 +407,7 @@ export default function ComponentsPage() {
                     <div className="flex items-center justify-between">
                       <span className="text-sm">Team Members</span>
                       <div className="flex items-center gap-2">
-                        <AvatarGroup 
+                        <AvatarGroup
                           avatars={sampleAvatars.slice(0, 4)}
                           max={3}
                           size="sm"

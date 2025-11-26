@@ -16,14 +16,9 @@ const accordionVariants = cva(
         card: "space-y-4",
         outline: "border border-border rounded-lg divide-y divide-border",
       },
-      type: {
-        single: "",
-        multiple: "",
-      },
     },
     defaultVariants: {
       variant: "default",
-      type: "single",
     },
   }
 );
@@ -51,7 +46,7 @@ const accordionItemVariants = cva(
  * Accordion trigger variants
  */
 const accordionTriggerVariants = cva(
-  "flex flex-1 items-center justify-between py-4 font-medium transition-all hover:no-underline [&[data-state=open]>svg]:rotate-180",
+  "flex flex-1 items-center justify-between py-4 font-medium transition-all hover:no-underline [&[data-state=open]>svg]:rotate-180 cursor-pointer",
   {
     variants: {
       variant: {
@@ -94,26 +89,13 @@ const accordionContentVariants = cva(
 /**
  * Accordion component props
  */
-export interface AccordionProps
-  extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>,
-    VariantProps<typeof accordionVariants> {
-  /**
-   * Accordion items
-   */
-  items?: AccordionItem[];
-  /**
-   * Default open items (for multiple type)
-   */
-  defaultValue?: string | string[];
-  /**
-   * Controlled open items
-   */
-  value?: string | string[];
-  /**
-   * Open change handler
-   */
-  onValueChange?: (value: string | string[]) => void;
-}
+export type AccordionProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root> &
+  VariantProps<typeof accordionVariants> & {
+    /**
+     * Accordion items
+     */
+    items?: AccordionItem[];
+  };
 
 /**
  * Accordion item interface
@@ -143,25 +125,21 @@ export interface AccordionItem {
 const Accordion = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Root>,
   AccordionProps
->(({ className, variant, type, items, defaultValue, value, onValueChange, children, ...props }, ref) => {
+>(({ className, variant, items, children, ...props }, ref) => {
   if (items && items.length > 0) {
     return (
       <AccordionPrimitive.Root
         ref={ref}
-        className={cn(accordionVariants({ variant, type }), className)}
-        type={type}
-        defaultValue={defaultValue}
-        value={value}
-        onValueChange={onValueChange}
+        className={cn(accordionVariants({ variant }), className)}
         {...props}
       >
         {items.map((item) => (
-          <AccordionItem 
-            key={item.value} 
+          <AccordionItem
+            key={item.value}
             value={item.value}
             variant={variant}
           >
-            <AccordionTrigger 
+            <AccordionTrigger
               variant={variant}
               disabled={item.disabled}
             >
@@ -187,11 +165,7 @@ const Accordion = React.forwardRef<
   return (
     <AccordionPrimitive.Root
       ref={ref}
-      className={cn(accordionVariants({ variant, type }), className)}
-      type={type}
-      defaultValue={defaultValue}
-      value={value}
-      onValueChange={onValueChange}
+      className={cn(accordionVariants({ variant }), className)}
       {...props}
     >
       {children}
@@ -206,7 +180,7 @@ Accordion.displayName = "Accordion";
  */
 const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item> & 
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item> &
   VariantProps<typeof accordionItemVariants>
 >(({ className, variant, ...props }, ref) => (
   <AccordionPrimitive.Item
@@ -223,7 +197,7 @@ AccordionItem.displayName = "AccordionItem";
  */
 const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & 
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> &
   VariantProps<typeof accordionTriggerVariants>
 >(({ className, variant, size, children, ...props }, ref) => (
   <AccordionPrimitive.Header className="flex">
@@ -245,7 +219,7 @@ AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
  */
 const AccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content> & 
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content> &
   VariantProps<typeof accordionContentVariants>
 >(({ className, variant, children, ...props }, ref) => (
   <AccordionPrimitive.Content
