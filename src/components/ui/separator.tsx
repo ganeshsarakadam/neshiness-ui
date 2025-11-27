@@ -62,7 +62,7 @@ const separatorVariants = cva(
  */
 export interface SeparatorProps
   extends React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>,
-    VariantProps<typeof separatorVariants> {
+  Omit<VariantProps<typeof separatorVariants>, "orientation"> {
   /**
    * Whether to add decorative styling
    */
@@ -153,9 +153,9 @@ const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
           className={cn("relative flex items-center justify-center my-4", className)}
           {...props}
         >
-          <Separator 
-            variant={variant} 
-            size={size} 
+          <Separator
+            variant={variant}
+            size={size}
             className="absolute inset-0"
           />
           <span className={cn(
@@ -172,10 +172,10 @@ const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
     }
 
     return (
-      <Separator 
+      <Separator
         ref={ref}
-        variant={variant} 
-        size={size} 
+        variant={variant}
+        size={size}
         className={cn("my-4", className)}
         {...props}
       />

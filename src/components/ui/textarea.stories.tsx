@@ -39,7 +39,7 @@ const meta = {
       control: { type: 'number' },
       description: 'Maximum number of characters allowed',
     },
-    showCount: {
+    showCharCount: {
       control: { type: 'boolean' },
       description: 'Whether to show character count',
     },
@@ -128,7 +128,7 @@ export const WithCharacterCount: Story = {
         <Textarea
           placeholder="Type your message..."
           maxLength={100}
-          showCount
+          showCharCount
         />
       </div>
       <div>
@@ -136,7 +136,7 @@ export const WithCharacterCount: Story = {
         <Textarea
           placeholder="Describe your project..."
           maxLength={500}
-          showCount
+          showCharCount
         />
       </div>
     </div>
@@ -215,7 +215,7 @@ export const Interactive: Story = {
     size: 'md',
     disabled: false,
     autoResize: false,
-    showCount: false,
+    showCharCount: false,
     rows: 4,
   },
 }
@@ -232,7 +232,7 @@ export const FormExamples: Story = {
           <Textarea
             placeholder="Tell us what you think..."
             maxLength={500}
-            showCount
+            showCharCount
             rows={4}
           />
         </div>

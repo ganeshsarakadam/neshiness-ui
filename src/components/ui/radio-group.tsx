@@ -53,7 +53,7 @@ const radioItemVariants = cva(
  */
 export interface RadioGroupProps
   extends React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>,
-    VariantProps<typeof radioGroupVariants> {
+  Omit<VariantProps<typeof radioGroupVariants>, "orientation"> {
   /**
    * Label for the radio group
    */
@@ -90,7 +90,7 @@ export interface RadioGroupProps
  */
 export interface RadioItemProps
   extends React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>,
-    VariantProps<typeof radioItemVariants> {
+  VariantProps<typeof radioItemVariants> {
   /**
    * Label for the radio item
    */
@@ -123,18 +123,18 @@ export interface RadioItemProps
 const RadioGroup = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Root>,
   RadioGroupProps
->(({ 
-  className, 
-  orientation, 
-  label, 
-  helperText, 
-  errorMessage, 
-  error, 
+>(({
+  className,
+  orientation,
+  label,
+  helperText,
+  errorMessage,
+  error,
   required,
   disabled,
   options = [],
   children,
-  ...props 
+  ...props
 }, ref) => {
   return (
     <div className="space-y-2">
@@ -191,14 +191,14 @@ RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
 const RadioGroupItem = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Item>,
   RadioItemProps
->(({ 
-  className, 
-  size, 
-  variant, 
-  label, 
+>(({
+  className,
+  size,
+  variant,
+  label,
   description,
   disabled,
-  ...props 
+  ...props
 }, ref) => {
   if (label) {
     return (

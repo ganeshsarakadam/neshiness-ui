@@ -105,7 +105,7 @@ const tabsContentVariants = cva(
  */
 export interface TabsProps
   extends React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root>,
-    VariantProps<typeof tabsVariants> {
+  Omit<VariantProps<typeof tabsVariants>, "orientation"> {
   /**
    * Tab items
    */
@@ -157,9 +157,9 @@ const Tabs = React.forwardRef<
       >
         <TabsList variant={variant === "card" ? "pills" : "default"} orientation={orientation}>
           {items.map((item) => (
-            <TabsTrigger 
-              key={item.value} 
-              value={item.value} 
+            <TabsTrigger
+              key={item.value}
+              value={item.value}
               disabled={item.disabled}
               variant={variant === "card" ? "pills" : "default"}
               orientation={orientation}
@@ -176,10 +176,10 @@ const Tabs = React.forwardRef<
             </TabsTrigger>
           ))}
         </TabsList>
-        
+
         {items.map((item) => (
-          <TabsContent 
-            key={item.value} 
+          <TabsContent
+            key={item.value}
             value={item.value}
             variant={variant}
           >
@@ -209,7 +209,7 @@ Tabs.displayName = "Tabs";
  */
 const TabsList = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.List>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> & 
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> &
   VariantProps<typeof tabsListVariants>
 >(({ className, variant, orientation, ...props }, ref) => (
   <TabsPrimitive.List
@@ -226,7 +226,7 @@ TabsList.displayName = TabsPrimitive.List.displayName;
  */
 const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & 
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> &
   VariantProps<typeof tabsTriggerVariants>
 >(({ className, variant, orientation, size, ...props }, ref) => (
   <TabsPrimitive.Trigger
@@ -243,7 +243,7 @@ TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
  */
 const TabsContent = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content> & 
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content> &
   VariantProps<typeof tabsContentVariants>
 >(({ className, variant, ...props }, ref) => (
   <TabsPrimitive.Content
