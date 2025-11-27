@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { Checkbox } from './checkbox'
 
 const meta = {
@@ -21,10 +21,7 @@ const meta = {
       control: { type: 'boolean' },
       description: 'Whether the checkbox is checked',
     },
-    indeterminate: {
-      control: { type: 'boolean' },
-      description: 'Whether the checkbox is in indeterminate state',
-    },
+
     required: {
       control: { type: 'boolean' },
       description: 'Whether the checkbox is required',
@@ -65,7 +62,7 @@ export const States: Story = {
         </label>
       </div>
       <div className="flex items-center space-x-2">
-        <Checkbox id="indeterminate" indeterminate />
+        <Checkbox id="indeterminate" checked="indeterminate" />
         <label htmlFor="indeterminate" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Indeterminate
         </label>
@@ -110,7 +107,7 @@ export const CheckboxGroup: Story = {
   render: () => (
     <div className="space-y-4">
       <h3 className="text-lg font-semibold">Select your interests:</h3>
-      
+
       <div className="space-y-3">
         <div className="flex items-center space-x-2">
           <Checkbox id="react" />
@@ -118,28 +115,28 @@ export const CheckboxGroup: Story = {
             React
           </label>
         </div>
-        
+
         <div className="flex items-center space-x-2">
           <Checkbox id="typescript" />
           <label htmlFor="typescript" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             TypeScript
           </label>
         </div>
-        
+
         <div className="flex items-center space-x-2">
           <Checkbox id="tailwind" />
           <label htmlFor="tailwind" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             Tailwind CSS
           </label>
         </div>
-        
+
         <div className="flex items-center space-x-2">
           <Checkbox id="nextjs" />
           <label htmlFor="nextjs" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             Next.js
           </label>
         </div>
-        
+
         <div className="flex items-center space-x-2">
           <Checkbox id="storybook" />
           <label htmlFor="storybook" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
@@ -164,7 +161,7 @@ export const FormExample: Story = {
     <form className="space-y-6 w-80">
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">Newsletter Signup</h3>
-        
+
         <div className="space-y-3">
           <div className="flex items-center space-x-2">
             <Checkbox id="newsletter" required />
@@ -172,14 +169,14 @@ export const FormExample: Story = {
               Subscribe to newsletter
             </label>
           </div>
-          
+
           <div className="flex items-center space-x-2">
             <Checkbox id="updates" />
             <label htmlFor="updates" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
               Product updates
             </label>
           </div>
-          
+
           <div className="flex items-center space-x-2">
             <Checkbox id="promotions" />
             <label htmlFor="promotions" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
@@ -188,10 +185,10 @@ export const FormExample: Story = {
           </div>
         </div>
       </div>
-      
+
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">Terms and Conditions</h3>
-        
+
         <div className="space-y-3">
           <div className="flex items-center space-x-2">
             <Checkbox id="terms" required />
@@ -199,7 +196,7 @@ export const FormExample: Story = {
               I agree to the Terms of Service
             </label>
           </div>
-          
+
           <div className="flex items-center space-x-2">
             <Checkbox id="privacy" required />
             <label htmlFor="privacy" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">

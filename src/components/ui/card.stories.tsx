@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './card'
 import { Button } from './button'
 
@@ -80,7 +80,7 @@ export const Variants: Story = {
           <p>This is a default card with standard styling.</p>
         </CardContent>
       </Card>
-      
+
       <Card variant="outline" className="w-[300px]">
         <CardHeader>
           <CardTitle>Outline Card</CardTitle>
@@ -106,7 +106,7 @@ export const Sizes: Story = {
           <p>Compact card with smaller padding.</p>
         </CardContent>
       </Card>
-      
+
       <Card size="md" className="w-[300px]">
         <CardHeader>
           <CardTitle>Medium Card</CardTitle>
@@ -115,7 +115,7 @@ export const Sizes: Story = {
           <p>Standard card with medium padding.</p>
         </CardContent>
       </Card>
-      
+
       <Card size="lg" className="w-[300px]">
         <CardHeader>
           <CardTitle>Large Card</CardTitle>
@@ -138,7 +138,7 @@ export const Composition: Story = {
           <p>Simple card with just content.</p>
         </CardContent>
       </Card>
-      
+
       {/* Card with header only */}
       <Card className="w-[300px]">
         <CardHeader>
@@ -146,7 +146,7 @@ export const Composition: Story = {
           <CardDescription>No content or footer</CardDescription>
         </CardHeader>
       </Card>
-      
+
       {/* Card with content and footer */}
       <Card className="w-[300px]">
         <CardContent className="p-6">
@@ -156,7 +156,7 @@ export const Composition: Story = {
           <Button size="sm">Learn More</Button>
         </CardFooter>
       </Card>
-      
+
       {/* Full card */}
       <Card className="w-[300px]">
         <CardHeader>

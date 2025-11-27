@@ -33,8 +33,8 @@ const inputVariants = cva(
  * Input component props
  */
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement>,
-    VariantProps<typeof inputVariants> {
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">,
+  VariantProps<typeof inputVariants> {
   /**
    * Whether the input has an error
    */
@@ -88,27 +88,27 @@ export interface InputProps
  * ```
  */
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ 
-    className, 
-    type, 
-    size, 
-    variant, 
-    error, 
-    errorMessage, 
-    success, 
-    successMessage, 
-    helperText, 
-    label, 
-    required, 
-    leftIcon, 
-    rightIcon, 
-    loading, 
+  ({
+    className,
+    type,
+    size,
+    variant,
+    error,
+    errorMessage,
+    success,
+    successMessage,
+    helperText,
+    label,
+    required,
+    leftIcon,
+    rightIcon,
+    loading,
     disabled,
-    ...props 
+    ...props
   }, ref) => {
     // Determine variant based on state
     const inputVariant = error ? "error" : success ? "success" : variant;
-    
+
     // Determine if input should be disabled
     const isDisabled = disabled || loading;
 

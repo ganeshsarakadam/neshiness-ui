@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { Badge } from './badge'
 
 const meta = {
@@ -132,7 +132,7 @@ export const UseCases: Story = {
           <Badge variant="info">Draft</Badge>
         </div>
       </div>
-      
+
       <div>
         <h3 className="text-lg font-semibold mb-2">Counters</h3>
         <div className="flex flex-wrap gap-2">
@@ -141,7 +141,7 @@ export const UseCases: Story = {
           <Badge variant="secondary">99+</Badge>
         </div>
       </div>
-      
+
       <div>
         <h3 className="text-lg font-semibold mb-2">Categories</h3>
         <div className="flex flex-wrap gap-2">

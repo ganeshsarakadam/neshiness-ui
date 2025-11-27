@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { Label } from './label'
 
 const meta = {
@@ -150,7 +150,7 @@ export const FormExample: Story = {
     <form className="space-y-6 w-80">
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">User Information</h3>
-        
+
         <div>
           <Label htmlFor="firstName" required>First Name</Label>
           <input
@@ -160,7 +160,7 @@ export const FormExample: Story = {
             className="mt-1 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           />
         </div>
-        
+
         <div>
           <Label htmlFor="lastName" required>Last Name</Label>
           <input
@@ -170,7 +170,7 @@ export const FormExample: Story = {
             className="mt-1 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           />
         </div>
-        
+
         <div>
           <Label htmlFor="email" required>Email Address</Label>
           <input
@@ -180,7 +180,7 @@ export const FormExample: Story = {
             className="mt-1 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           />
         </div>
-        
+
         <div>
           <Label htmlFor="phone">Phone Number</Label>
           <input

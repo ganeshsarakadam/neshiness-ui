@@ -388,7 +388,7 @@ const SelectField = ({
       )}
     </div>
   );
-});
+};
 
 SelectField.displayName = "SelectField";
 

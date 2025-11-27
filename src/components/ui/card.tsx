@@ -13,7 +13,7 @@ const cardVariants = cva(
     variants: {
       size: {
         sm: "p-3",
-        md: "p-4", 
+        md: "p-4",
         lg: "p-6",
         xl: "p-8",
       },
@@ -25,6 +25,7 @@ const cardVariants = cva(
         warning: "border-warning/20 bg-warning/5",
         info: "border-info/20 bg-info/5",
         destructive: "border-destructive/20 bg-destructive/5",
+        outline: "border-border bg-transparent",
       },
       interactive: {
         true: "hover:shadow-md cursor-pointer hover:border-primary/40 transition-all duration-200",
@@ -42,9 +43,9 @@ const cardVariants = cva(
 /**
  * Card component props extending base props
  */
-export interface CardComponentProps 
+export interface CardComponentProps
   extends BaseComponentProps,
-    VariantProps<typeof cardVariants> {
+  VariantProps<typeof cardVariants> {
   title?: string;
   description?: string;
   footer?: React.ReactNode;
@@ -179,12 +180,12 @@ const CardFooter = React.forwardRef<HTMLDivElement, BaseComponentProps>(
 
 CardFooter.displayName = "CardFooter";
 
-export { 
-  Card, 
-  CardHeader, 
-  CardFooter, 
-  CardTitle, 
-  CardDescription, 
+export {
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardDescription,
   CardContent,
-  cardVariants 
+  cardVariants
 };
