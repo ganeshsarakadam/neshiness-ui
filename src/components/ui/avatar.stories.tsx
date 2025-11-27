@@ -45,8 +45,8 @@ type Story = StoryObj<typeof meta>
 // Default avatar
 export const Default: Story = {
   args: {
-    src: "https://github.com/shadcn.png",
-    alt: "@shadcn",
+    src: "",
+    alt: "@neshUI",
     fallback: "CN",
     size: "md"
   },
@@ -56,12 +56,12 @@ export const Default: Story = {
 export const Sizes: Story = {
   render: () => (
     <div className="flex items-center gap-4">
-      <Avatar size="xs" src="https://github.com/shadcn.png" alt="@shadcn" fallback="CN" />
-      <Avatar size="sm" src="https://github.com/shadcn.png" alt="@shadcn" fallback="CN" />
-      <Avatar size="md" src="https://github.com/shadcn.png" alt="@shadcn" fallback="CN" />
-      <Avatar size="lg" src="https://github.com/shadcn.png" alt="@shadcn" fallback="CN" />
-      <Avatar size="xl" src="https://github.com/shadcn.png" alt="@shadcn" fallback="CN" />
-      <Avatar size="2xl" src="https://github.com/shadcn.png" alt="@shadcn" fallback="CN" />
+      <Avatar size="xs" src="" alt="@shadcn" fallback="CN" />
+      <Avatar size="sm" src="" alt="@shadcn" fallback="CN" />
+      <Avatar size="md" src="" alt="@shadcn" fallback="CN" />
+      <Avatar size="lg" src="" alt="@shadcn" fallback="CN" />
+      <Avatar size="xl" src="" alt="@shadcn" fallback="CN" />
+      <Avatar size="2xl" src="" alt="@shadcn" fallback="CN" />
     </div>
   ),
   parameters: {
@@ -117,7 +117,7 @@ export const FallbackOnly: Story = {
 // Interactive example
 export const Interactive: Story = {
   args: {
-    src: "https://github.com/shadcn.png",
+    src: "",
     alt: "@shadcn",
     fallback: "CN",
     size: "lg",
@@ -131,10 +131,10 @@ export const Group: Story = {
     <div className="space-y-4">
       <div>
         <h3 className="text-lg font-semibold mb-2">Avatar Group</h3>
-        <AvatarGroup 
+        <AvatarGroup
           max={3}
           avatars={[
-            { src: "https://github.com/shadcn.png", alt: "@shadcn", fallback: "CN" },
+            { src: "", alt: "@shadcn", fallback: "CN" },
             { src: "https://github.com/vercel.png", alt: "@vercel", fallback: "VC" },
             { alt: "User 3", fallback: "AB" },
             { alt: "User 4", fallback: "CD" },
@@ -142,13 +142,13 @@ export const Group: Story = {
           ]}
         />
       </div>
-      
+
       <div>
         <h3 className="text-lg font-semibold mb-2">Group with Custom Max</h3>
-        <AvatarGroup 
+        <AvatarGroup
           max={2}
           avatars={[
-            { src: "https://github.com/shadcn.png", alt: "@shadcn", fallback: "CN" },
+            { src: "", alt: "@shadcn", fallback: "CN" },
             { src: "https://github.com/vercel.png", alt: "@vercel", fallback: "VC" },
             { alt: "User 3", fallback: "AB" },
             { alt: "User 4", fallback: "CD" },
@@ -173,21 +173,21 @@ export const UseCases: Story = {
       <div>
         <h3 className="text-lg font-semibold mb-2">User Profile</h3>
         <div className="flex items-center gap-3">
-          <Avatar size="lg" src="https://github.com/shadcn.png" alt="@shadcn" fallback="CN" />
+          <Avatar size="lg" src="" alt="@shadcn" fallback="CN" />
           <div>
             <p className="font-semibold">John Doe</p>
             <p className="text-sm text-muted-foreground">john@example.com</p>
           </div>
         </div>
       </div>
-      
+
       <div>
         <h3 className="text-lg font-semibold mb-2">Team Members</h3>
         <div className="flex items-center gap-2">
-          <AvatarGroup 
+          <AvatarGroup
             max={4}
             avatars={[
-              { src: "https://github.com/shadcn.png", alt: "@shadcn", fallback: "CN" },
+              { src: "", alt: "@shadcn", fallback: "CN" },
               { src: "https://github.com/vercel.png", alt: "@vercel", fallback: "VC" },
               { alt: "User 3", fallback: "AB" },
               { alt: "User 4", fallback: "CD" },
@@ -197,7 +197,7 @@ export const UseCases: Story = {
           <span className="text-sm text-muted-foreground">5 team members</span>
         </div>
       </div>
-      
+
       <div>
         <h3 className="text-lg font-semibold mb-2">Status Avatars</h3>
         <div className="flex items-center gap-4">
