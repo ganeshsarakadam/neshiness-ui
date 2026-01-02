@@ -12,8 +12,8 @@ import {
 } from "@/components/ui/select";
 
 export function SiteHeader() {
-  const [isDark, setIsDark] = React.useState(false);
-  const [currentTheme, setCurrentTheme] = React.useState("default");
+  const [isDark, setIsDark] = React.useState(true);
+  const [currentTheme, setCurrentTheme] = React.useState("golden-hour");
 
   // Sync state with DOM on mount
   React.useEffect(() => {
