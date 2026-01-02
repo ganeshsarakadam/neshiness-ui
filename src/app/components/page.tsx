@@ -4,18 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarGroup } from "@/components/ui/avatar";
-import { ThemeSwitcher } from "@/components/theme-switcher";
-import { useState } from "react";
-import Link from "next/link";
+import { SiteHeader } from "@/components/site-header";
 
 export default function ComponentsPage() {
-  const [isDark, setIsDark] = useState(false);
-
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-    document.documentElement.classList.toggle("dark");
-  };
-
   const sampleAvatars = [
     { src: "", alt: "John Doe", fallback: "JD" },
     { src: "", alt: "Jane Smith", fallback: "JS" },
@@ -26,47 +17,18 @@ export default function ComponentsPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Header */}
-      <header className="border-b border-border">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold">Component Library</h1>
-              <p className="text-muted-foreground mt-2">Atomic and composite components built with Radix UI</p>
-            </div>
-            <div className="flex gap-4">
-              <Button onClick={toggleTheme} variant="outline">
-                {isDark ? "☀️" : "🌙"} Toggle Dark
-              </Button>
-              <Button asChild variant="outline">
-                <Link href="/">🏠 Home</Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link href="/forms">📝 Forms</Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link href="/navigation">🧭 Navigation</Link>
-              </Button>
-
-            </div>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto space-y-16">
-
-          {/* Theme Switcher Demo */}
-          <section className="space-y-6">
-            <div className="text-center">
-              <h2 className="text-3xl font-bold">Theme Switcher</h2>
-              <p className="text-muted-foreground">Switch between different color themes</p>
-            </div>
-            <div className="flex justify-center">
-              <ThemeSwitcher />
-            </div>
-          </section>
+          {/* Page Header */}
+          <div className="text-center space-y-4">
+            <h1 className="text-4xl md:text-5xl font-bold">Component Library</h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Atomic and composite components built with Radix UI primitives
+            </p>
+          </div>
 
           {/* Button Components */}
           <section className="space-y-8">

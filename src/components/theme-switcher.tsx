@@ -3,18 +3,18 @@
 import { Button } from "@/components/ui/button";
 
 export function ThemeSwitcher() {
-  const switchToNeutralTheme = () => {
-    // Remove blue-theme class but keep dark mode if active
+  const switchToDefaultTheme = () => {
+    // Remove theme classes but keep dark mode if active
     const isDark = document.documentElement.classList.contains('dark');
     document.documentElement.className = isDark ? 'dark' : '';
-    console.log('Switched to neutral theme, classes:', document.documentElement.className);
+    console.log('Switched to default theme, classes:', document.documentElement.className);
   };
 
-  const switchToBlueTheme = () => {
-    // Add blue-theme class and keep dark mode if active
+  const switchToGoldenHourTheme = () => {
+    // Add golden-hour class and keep dark mode if active
     const isDark = document.documentElement.classList.contains('dark');
-    document.documentElement.className = `blue-theme${isDark ? ' dark' : ''}`;
-    console.log('Switched to blue theme, classes:', document.documentElement.className);
+    document.documentElement.className = `golden-hour${isDark ? ' dark' : ''}`;
+    console.log('Switched to golden hour theme, classes:', document.documentElement.className);
   };
 
   const toggleDarkMode = () => {
@@ -24,11 +24,14 @@ export function ThemeSwitcher() {
 
   return (
     <div className="flex gap-2 p-4 bg-card border border-border rounded-lg">
-      <Button onClick={switchToNeutralTheme} variant="outline" size="sm">
-        🎨 Neutral
+      <Button onClick={switchToDefaultTheme} variant="outline" size="sm">
+        Default
       </Button>
-      <Button onClick={switchToBlueTheme} variant="outline" size="sm">
-        🔵 Blue
+      <Button onClick={switchToGoldenHourTheme} variant="outline" size="sm">
+        🌅 Golden Hour
+      </Button>
+      <Button onClick={toggleDarkMode} variant="outline" size="sm">
+        ☀️ / 🌙
       </Button>
     </div>
   );

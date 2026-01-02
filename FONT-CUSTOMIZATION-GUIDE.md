@@ -40,41 +40,51 @@ const jetbrainsMono = JetBrains_Mono({
 --font-mono: var(--font-jetbrains-mono, monospace);
 ```
 
-### Method 2: Use Custom Font Files
+### Method 2: Use Custom Font Files (Recommended for Local Fonts)
 
-#### Step 1: Add font files to public/fonts/
-```
-public/
-└── fonts/
-    ├── custom-sans.woff2
-    ├── custom-sans.woff
-    ├── custom-mono.woff2
-    └── custom-mono.woff
-```
+Next.js provides `next/font/local` to automatically optimize local fonts (zero layout shift, preloading).
 
-#### Step 2: Define @font-face in globals.css
-```css
-@font-face {
-  font-family: 'Custom Sans';
-  src: url('/fonts/custom-sans.woff2') format('woff2'),
-       url('/fonts/custom-sans.woff') format('woff');
-  font-weight: 300 700;
-  font-display: swap;
+#### Step 1: Add font files
+Place your font files (e.g., `.woff2`, `.ttf`) in a folder like `src/app/fonts/`.
+
+#### Step 2: Update layout.tsx
+```typescript
+import localFont from 'next/font/local'
+
+// Configure the local font
+const myCustomFont = localFont({
+  src: [
+    {
+      path: './fonts/my-font-regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/my-font-bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-custom', // Define the CSS variable name
+})
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body className={`${myCustomFont.variable} antialiased`}>
+        {children}
+      </body>
+    </html>
+  )
 }
-
-@font-face {
-  font-family: 'Custom Mono';
-  src: url('/fonts/custom-mono.woff2') format('woff2'),
-       url('/fonts/custom-mono.woff') format('woff');
-  font-weight: 400 700;
-  font-display: swap;
-}
 ```
 
-#### Step 3: Update CSS variables
+#### Step 3: Update globals.css
 ```css
---font-sans: 'Custom Sans', system-ui, sans-serif;
---font-mono: 'Custom Mono', monospace;
+/* In globals.css */
+:root {
+  --font-sans: var(--font-custom); /* Use the variable you defined */
+}
 ```
 
 ### Method 3: Multiple Font Weights

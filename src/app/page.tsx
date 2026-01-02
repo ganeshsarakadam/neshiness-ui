@@ -1,66 +1,38 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
-import { ThemeSwitcher } from "@/components/theme-switcher";
-import { useState } from "react";
-import Link from "next/link";
+import { SiteHeader } from "@/components/site-header";
+import { Hero } from "@/components/hero";
+import { FeaturesSection } from "@/components/features-section";
 
 export default function Home() {
-  const [isDark, setIsDark] = useState(false);
-
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-    document.documentElement.classList.toggle("dark");
-  };
-
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Header */}
-      <header className="border-b border-border">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold">Neshiness UI Design System</h1>
-              <p className="text-muted-foreground mt-2">Comprehensive design tokens and component library</p>
-            </div>
-            <div className="flex gap-4">
-              <Button onClick={toggleTheme} variant="outline">
-                {isDark ? "☀️" : "🌙"} Toggle Dark
-              </Button>
-              <Button asChild variant="outline">
-                <Link href="/components">🧩 Components</Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link href="/forms">📝 Forms</Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link href="/navigation">🧭 Navigation</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
-      {/* Main Content */}
+      {/* Hero Section with Parallax */}
+      <Hero />
+
+      {/* Features Section */}
+      <FeaturesSection />
+
+      {/* Design Tokens Showcase */}
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto space-y-16">
-
-          {/* Theme Switcher */}
-          <section className="text-center space-y-4">
-            <h2 className="text-3xl font-bold">Theme Switcher</h2>
-            <p className="text-lg text-muted-foreground">
-              Switch between different color themes to see how the design system adapts
+          {/* Section Divider */}
+          <div className="text-center py-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Design System Tokens
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Explore the comprehensive design tokens that power Nesh UI
             </p>
-            <div className="flex justify-center">
-              <ThemeSwitcher />
-            </div>
-          </section>
+          </div>
 
           {/* Color Palette */}
           <section className="space-y-8">
             <div className="text-center">
-              <h2 className="text-3xl font-bold">Color Palette</h2>
-              <p className="text-muted-foreground">Comprehensive color system with semantic naming</p>
+              <h2 className="text-2xl font-bold">Color Palette</h2>
+              <p className="text-muted-foreground">
+                Comprehensive color system with semantic naming
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -115,8 +87,10 @@ export default function Home() {
           {/* Typography */}
           <section className="space-y-8">
             <div className="text-center">
-              <h2 className="text-3xl font-bold">Typography</h2>
-              <p className="text-muted-foreground">Consistent text styles and hierarchy</p>
+              <h2 className="text-2xl font-bold">Typography</h2>
+              <p className="text-muted-foreground">
+                Consistent text styles and hierarchy
+              </p>
             </div>
 
             <div className="space-y-6">
@@ -126,9 +100,15 @@ export default function Home() {
                   <h1 className="text-4xl font-bold">Heading 1 - 4xl Bold</h1>
                   <h2 className="text-3xl font-bold">Heading 2 - 3xl Bold</h2>
                   <h3 className="text-2xl font-bold">Heading 3 - 2xl Bold</h3>
-                  <h4 className="text-xl font-semibold">Heading 4 - xl Semibold</h4>
-                  <h5 className="text-lg font-semibold">Heading 5 - lg Semibold</h5>
-                  <h6 className="text-base font-semibold">Heading 6 - base Semibold</h6>
+                  <h4 className="text-xl font-semibold">
+                    Heading 4 - xl Semibold
+                  </h4>
+                  <h5 className="text-lg font-semibold">
+                    Heading 5 - lg Semibold
+                  </h5>
+                  <h6 className="text-base font-semibold">
+                    Heading 6 - base Semibold
+                  </h6>
                 </div>
               </div>
 
@@ -144,12 +124,11 @@ export default function Home() {
 
               <div className="bg-accent/50 border border-border rounded-lg p-4 mt-4">
                 <p className="text-sm">
-                  <strong>Current Font:</strong> Apple SF Pro (system fonts) •
-                  <strong> Sans-serif:</strong> SF Pro Display/Text •
-                  <strong>Monospace:</strong> SF Mono
+                  <strong>Sans-serif:</strong> Inter •{" "}
+                  <strong>Monospace:</strong> JetBrains Mono
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Automatically uses Apple&apos;s fonts on Apple devices, falls back to system fonts on other platforms
+                  Modern, readable fonts optimized for AI interfaces
                 </p>
               </div>
             </div>
@@ -158,8 +137,10 @@ export default function Home() {
           {/* Spacing */}
           <section className="space-y-8">
             <div className="text-center">
-              <h2 className="text-3xl font-bold">Spacing Scale</h2>
-              <p className="text-muted-foreground">Consistent spacing values for layouts and components</p>
+              <h2 className="text-2xl font-bold">Spacing Scale</h2>
+              <p className="text-muted-foreground">
+                Consistent spacing values for layouts
+              </p>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -178,8 +159,8 @@ export default function Home() {
           {/* Shadows */}
           <section className="space-y-8">
             <div className="text-center">
-              <h2 className="text-3xl font-bold">Shadow System</h2>
-              <p className="text-muted-foreground">Elevation and depth through shadows</p>
+              <h2 className="text-2xl font-bold">Shadow System</h2>
+              <p className="text-muted-foreground">Elevation through shadows</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -234,9 +215,9 @@ export default function Home() {
           </section>
 
           {/* Border Radius */}
-          <section className="space-y-8">
+          <section className="space-y-8 pb-16">
             <div className="text-center">
-              <h2 className="text-3xl font-bold">Border Radius</h2>
+              <h2 className="text-2xl font-bold">Border Radius</h2>
               <p className="text-muted-foreground">Consistent corner rounding</p>
             </div>
 
@@ -259,7 +240,6 @@ export default function Home() {
               </div>
             </div>
           </section>
-
         </div>
       </main>
     </div>

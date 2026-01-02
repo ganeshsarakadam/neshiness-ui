@@ -1,0 +1,139 @@
+/* Golden Hour Theme - Simplified with 3 core colors */
+:root.golden-hour {
+  /* Border Radius */
+  --radius: 0.625rem;
+
+  /* ============================================
+     CORE COLORS - Everything derives from these
+     ============================================ */
+
+  /* Background & Text */
+  --background: oklch(0.99 0.01 41.5);        /* Very light warm white */
+  --foreground: oklch(0.20 0.04 294);         /* Deep warm purple-black */
+
+  /* Primary Accent (Your Orange) */
+  --primary: oklch(0.664 0.1952 43.08);       /* #F05F04 - Perfect orange */
+  --primary-foreground: oklch(1 0 0);         /* White on orange */
+
+  /* Muted/Gray (Your neutral color) */
+  --muted: oklch(0.94 0.03 294);              /* Light warm mauve */
+  --muted-foreground: oklch(0.55 0.05 294);   /* Medium warm mauve */
+
+  /* ============================================
+     DERIVED COLORS - All inherit from core colors
+     ============================================ */
+
+  /* Cards & Popovers - Use pure white for elevation */
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+
+  /* Secondary & Accent - Reuse muted */
+  --secondary: var(--muted);
+  /* --secondary-foreground: oklch(0.35 0.05 294); */
+  --secondary-foreground:  oklch(0.535 0.0414 300.82);
+
+  --accent: var(--muted);
+  --accent-foreground:  oklch(0.535 0.0414 300.82);
+  /* --accent-foreground: oklch(0.35 0.05 294); */
+
+
+  /* Borders & Inputs - Slightly darker muted */
+  --border: oklch(0.85 0.04 294);
+  --input: oklch(0.85 0.04 294);
+  --ring: var(--primary);
+
+  /* Semantic Colors - Sensible defaults */
+  --destructive: oklch(0.58 0.22 25);         /* Red */
+  --destructive-foreground: oklch(0.98 0 0);
+  --success: oklch(0.60 0.15 140);            /* Green */
+  --success-foreground: oklch(0.98 0 0);
+  --warning: oklch(0.75 0.18 55);             /* Gold */
+  --warning-foreground: var(--foreground);
+  --info: var(--primary);                     /* Reuse primary orange */
+  --info-foreground: var(--primary-foreground);
+
+  /* Charts - Simple warm palette */
+  --chart-1: var(--primary);
+  --chart-2: oklch(0.51 0.043 294);           /* Gray */
+  --chart-3: oklch(0.80 0.15 60);             /* Gold */
+  --chart-4: oklch(0.65 0.18 25);             /* Red */
+  --chart-5: oklch(0.85 0.08 45);             /* Peach */
+
+  /* Sidebar - Reuse main tokens */
+  --sidebar: var(--background);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--muted);
+  --sidebar-accent-foreground: var(--muted-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--primary);
+}
+
+:root.golden-hour.dark {
+  /* ============================================
+     CORE COLORS - Dark Mode
+     ============================================ */
+
+  /* Background & Text */
+  --background: oklch(0 0 0);                 /* Pure black #000000 */
+  --foreground: oklch(0.96 0.01 294);         /* Light warm white */
+
+  /* Primary Accent (Same orange) */
+  --primary: oklch(0.664 0.1952 43.08);       /* #F05F04 */
+  --primary-foreground: oklch(1 0 0);         /* White */
+
+  /* Muted/Gray */
+  --muted: oklch(0.20 0.03 294);              /* Dark warm mauve */
+  --muted-foreground: oklch(0.70 0.04 294);   /* Lighter warm mauve */
+
+  /* ============================================
+     DERIVED COLORS - Dark Mode
+     ============================================ */
+
+  /* Cards & Popovers - Slightly elevated from black */
+  --card: oklch(0.12 0.02 294);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.12 0.02 294);
+  --popover-foreground: var(--foreground);
+
+  /* Secondary & Accent - Reuse muted */
+  --secondary: var(--muted);
+  --secondary-foreground: var(--foreground);
+  --accent: var(--muted);
+  --accent-foreground: var(--foreground);
+
+  /* Borders & Inputs - Slightly lighter muted */
+  --border: oklch(0.25 0.03 294) ;
+  --input: oklch(0.25 0.03 294);
+  --ring: var(--primary);
+
+  /* Semantic Colors */
+  --destructive: oklch(0.65 0.18 25);
+  --destructive-foreground: var(--foreground);
+  --success: oklch(0.60 0.15 140);
+  --success-foreground: oklch(0 0 0);         /* Black text on green */
+  --warning: oklch(0.75 0.18 55);
+  --warning-foreground: oklch(0 0 0);         /* Black text on yellow */
+  --info: var(--primary);
+  --info-foreground: var(--primary-foreground);
+
+  /* Charts - Same palette */
+  --chart-1: var(--primary);
+  --chart-2: oklch(0.51 0.043 294);
+  --chart-3: oklch(0.80 0.15 60);
+  --chart-4: oklch(0.55 0.18 25);
+  --chart-5: oklch(0.75 0.10 45);
+
+  /* Sidebar - Reuse main tokens */
+  --sidebar: var(--background);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--muted);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--primary);
+}

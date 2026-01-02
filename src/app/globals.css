@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @import "tw-animate-css";
-@import "./themes/blue-theme.css";
+@import "./themes/golden-hour-theme.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -321,6 +321,24 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+
+  /* Smooth scrolling for the entire page */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   body {
