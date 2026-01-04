@@ -91,7 +91,7 @@ export function SiteHeader() {
               className="hidden sm:inline-flex"
             >
               <a
-                href="http://localhost:6006"
+                href={process.env.NEXT_PUBLIC_STORYBOOK_URL || "http://localhost:6006"}
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -1,30 +1,38 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
+"use client";
 
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { motion, type HTMLMotionProps } from "motion/react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+import { transitions, tapScale } from "@/lib/animations";
+
+// ============================================================================
+// BUTTON VARIANTS
+// ============================================================================
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive cursor-pointer",
+  "relative inline-flex items-center justify-center gap-2 rounded-full text-sm font-medium cursor-pointer transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] hover:scale-[1.02] [-webkit-font-smoothing:antialiased]",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-        outline:
-          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+        default:
+          "bg-primary text-primary-foreground border border-primary/20 shadow-md hover:bg-primary/95 hover:shadow-lg hover:border-primary/30",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "bg-secondary text-secondary-foreground border border-secondary/20 shadow-md hover:bg-secondary/95 hover:shadow-lg",
+        outline:
+          "border-2 border-primary/40 bg-background/80 hover:bg-primary/10 hover:border-primary/60 shadow-sm",
         ghost:
-          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
-        link: "text-primary underline-offset-4 hover:underline",
+          "bg-transparent hover:bg-accent/60",
+        glow:
+          "bg-primary text-primary-foreground border border-primary/30 shadow-[0_0_20px_-5px] shadow-primary/40 hover:shadow-[0_0_30px_-5px] hover:shadow-primary/60",
+        "moving-border":
+          "bg-primary text-primary-foreground border border-primary/20 shadow-md hover:bg-primary/95",
       },
       size: {
-        default: "h-9 px-4 py-2 has-[>svg]:px-3",
-        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-        icon: "size-9",
+        default: "h-11 px-6 py-2.5",
+        sm: "h-9 px-4 py-2 text-xs",
+        lg: "h-13 px-8 py-3 text-base",
+        icon: "h-11 w-11",
       },
     },
     defaultVariants: {
@@ -32,27 +40,246 @@ const buttonVariants = cva(
       size: "default",
     },
   }
-)
+);
 
-function Button({
-  className,
-  variant,
-  size,
-  asChild = false,
-  ...props
-}: React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean
-  }) {
-  const Comp = asChild ? Slot : "button"
+// ============================================================================
+// MOVING BORDER EFFECT COMPONENT
+// ============================================================================
 
-  return (
-    <Comp
-      data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
-    />
-  )
+interface MovingBorderEffectProps {
+  borderWidth?: number;
+  duration?: number;
+  segmentLength?: number;
 }
 
-export { Button, buttonVariants }
+function MovingBorderEffect({
+  borderWidth = 2,
+  duration = 1500,
+  segmentLength = 0.50,
+}: MovingBorderEffectProps) {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const pathRef = React.useRef<SVGRectElement>(null);
+  const [dimensions, setDimensions] = React.useState({ width: 0, height: 0 });
+  const [pathLength, setPathLength] = React.useState(0);
+
+  // Get container dimensions and calculate path length
+  React.useEffect(() => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      setDimensions({ width: rect.width, height: rect.height });
+    }
+
+    // Measure path after SVG is rendered
+    if (pathRef.current) {
+      const length = pathRef.current.getTotalLength();
+      setPathLength(length);
+    }
+  }, [dimensions.width]); // Recalc when dimensions change
+
+  // Animate stroke dashoffset to move border segment
+  const [dashOffset, setDashOffset] = React.useState(0);
+
+  React.useEffect(() => {
+    if (pathLength === 0) return;
+
+    let animationFrameId: number;
+    let startTime: number | null = null;
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+
+      // Calculate progress (0 to 1, looping)
+      const progress = (elapsed % duration) / duration;
+
+      // Animate dashoffset to move the stroke segment
+      setDashOffset(-progress * pathLength);
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+  }, [pathLength, duration]);
+
+  const calculatedSegmentLength = pathLength * segmentLength;
+  const gapLength = pathLength - calculatedSegmentLength;
+  const glowWidth = borderWidth * 2;
+
+  return (
+    <div ref={containerRef} className="absolute inset-0 pointer-events-none overflow-visible">
+      {dimensions.width > 0 && (
+        <svg
+          className="absolute inset-0"
+          width={dimensions.width}
+          height={dimensions.height}
+          style={{ overflow: 'visible' }}
+        >
+          {/* Invisible path for measurement */}
+          <rect
+            ref={pathRef}
+            x="0"
+            y="0"
+            width={dimensions.width}
+            height={dimensions.height}
+            rx={dimensions.height / 2}
+            fill="none"
+            stroke="none"
+          />
+
+          {/* Moving golden border segment */}
+          {pathLength > 0 && (
+            <>
+              {/* Glow effect (blurred background) */}
+              <rect
+                x="0"
+                y="0"
+                width={dimensions.width}
+                height={dimensions.height}
+                rx={dimensions.height / 2}
+                fill="none"
+                stroke="rgba(234, 179, 8, 0.6)"
+                strokeWidth={glowWidth}
+                strokeDasharray={`${calculatedSegmentLength} ${gapLength}`}
+                strokeDashoffset={dashOffset}
+                filter="blur(4px)"
+                strokeLinecap="round"
+              />
+              {/* Solid border segment */}
+              <rect
+                x="0"
+                y="0"
+                width={dimensions.width}
+                height={dimensions.height}
+                rx={dimensions.height / 2}
+                fill="none"
+                stroke="rgb(234, 179, 8)"
+                strokeWidth={borderWidth}
+                strokeDasharray={`${calculatedSegmentLength} ${gapLength}`}
+                strokeDashoffset={dashOffset}
+                strokeLinecap="round"
+              />
+            </>
+          )}
+        </svg>
+      )}
+    </div>
+  );
+}
+
+// ============================================================================
+// BUTTON COMPONENT
+// ============================================================================
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  children: React.ReactNode;
+  isLoading?: boolean;
+  // Moving border customization (only for moving-border variant)
+  borderWidth?: number;
+  animationDuration?: number;
+  segmentLength?: number;
+}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({
+    className,
+    variant,
+    size,
+    isLoading,
+    children,
+    disabled,
+    borderWidth,
+    animationDuration,
+    segmentLength,
+    ...props
+  }, ref) => {
+    const hasMovingBorder = variant === "moving-border";
+
+    return (
+      <button
+        ref={ref}
+        className={cn(buttonVariants({ variant, size, className }), "overflow-visible")}
+        disabled={isLoading || disabled}
+        {...props}
+      >
+        {/* Moving Border Effect - SVG Path Based */}
+        {hasMovingBorder && !disabled && !isLoading && (
+          <MovingBorderEffect
+            borderWidth={borderWidth}
+            duration={animationDuration}
+            segmentLength={segmentLength}
+          />
+        )}
+
+        {/* Button Content */}
+        <span className="relative z-10">
+          {isLoading ? (
+            <>
+              <motion.span
+                className="absolute inset-0 flex items-center justify-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={transitions.fast}
+              >
+                <Spinner />
+              </motion.span>
+              <span className="invisible">{children}</span>
+            </>
+          ) : (
+            children
+          )}
+        </span>
+      </button>
+    );
+  }
+);
+
+Button.displayName = "Button";
+
+// ============================================================================
+// SPINNER COMPONENT (for loading state)
+// ============================================================================
+
+function Spinner() {
+  return (
+    <motion.svg
+      className="h-4 w-4"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      animate={{ rotate: 360 }}
+      transition={{
+        duration: 1,
+        repeat: Infinity,
+        ease: "linear",
+      }}
+    >
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      />
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+      />
+    </motion.svg>
+  );
+}
+
+// ============================================================================
+// EXPORTS
+// ============================================================================
+
+export { Button, buttonVariants };

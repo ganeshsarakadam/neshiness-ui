@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/nextjs-vite'
+import { ThemeDecorator } from './ThemeDecorator'
 import '../src/app/globals.css'
 
 const preview: Preview = {
@@ -10,21 +11,7 @@ const preview: Preview = {
       },
     },
     backgrounds: {
-      default: 'light',
-      values: [
-        {
-          name: 'light',
-          value: '#ffffff',
-        },
-        {
-          name: 'dark',
-          value: '#0a0a0a',
-        },
-        {
-          name: 'neutral',
-          value: '#fafafa',
-        },
-      ],
+      disable: true, // Disable default backgrounds since we're using our theme system
     },
     viewport: {
       viewports: {
@@ -59,6 +46,37 @@ const preview: Preview = {
       },
     },
   },
+  globalTypes: {
+    theme: {
+      name: 'Theme',
+      description: 'Global theme for components',
+      defaultValue: 'default',
+      toolbar: {
+        title: 'Theme',
+        icon: 'paintbrush',
+        items: [
+          { value: 'default', title: 'Default', icon: 'circle' },
+          { value: 'golden-hour', title: '🌅 Golden Hour', icon: 'circlehollow' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+    colorMode: {
+      name: 'Color Mode',
+      description: 'Global color mode for components',
+      defaultValue: 'light',
+      toolbar: {
+        title: 'Color Mode',
+        icon: 'moon',
+        items: [
+          { value: 'light', title: 'Light', icon: 'sun' },
+          { value: 'dark', title: 'Dark', icon: 'moon' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+  },
+  decorators: [ThemeDecorator],
 };
 
 export default preview;
