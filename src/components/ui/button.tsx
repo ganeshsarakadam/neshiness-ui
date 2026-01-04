@@ -1,10 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { motion, type HTMLMotionProps } from "motion/react";
+import { motion } from "motion/react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import { transitions, tapScale } from "@/lib/animations";
+import { transitions } from "@/lib/animations";
 
 // ============================================================================
 // BUTTON VARIANTS

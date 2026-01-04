@@ -1,5 +1,4 @@
 import { type ReactNode, type ComponentPropsWithoutRef, type ElementType } from "react";
-import type { JSX } from "react";
 
 /**
  * Base component props that all components should extend
