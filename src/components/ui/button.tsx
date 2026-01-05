@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { motion } from "motion/react";
+import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { transitions } from "@/lib/animations";
@@ -181,6 +182,7 @@ export interface ButtonProps
     VariantProps<typeof buttonVariants> {
   children: React.ReactNode;
   isLoading?: boolean;
+  asChild?: boolean;
   // Moving border customization (only for moving-border variant)
   borderWidth?: number;
   animationDuration?: number;
@@ -195,12 +197,26 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     isLoading,
     children,
     disabled,
+    asChild = false,
     borderWidth,
     animationDuration,
     segmentLength,
     ...props
   }, ref) => {
     const hasMovingBorder = variant === "moving-border";
+
+    // When asChild is true, render children directly without wrappers
+    if (asChild) {
+      return (
+        <Slot
+          ref={ref}
+          className={cn(buttonVariants({ variant, size, className }))}
+          {...props}
+        >
+          {children}
+        </Slot>
+      );
+    }
 
     return (
       <button

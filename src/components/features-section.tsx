@@ -2,13 +2,13 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/ui/card";
+// import {
+//   Card,
+//   CardHeader,
+//   CardTitle,
+//   CardDescription,
+//   CardContent,
+// } from "@/components/ui/card";
 import { useIntersectionFade } from "@/hooks/use-intersection-fade";
 
 const features = [
@@ -135,25 +135,21 @@ function FeatureCard({ feature, delay }: FeatureCardProps) {
 
   return (
     <div ref={cardFade.ref} className={cardFade.animationClass}>
-      <Card
-        variant="default"
-        size="lg"
-        interactive
-        className="h-full hover:scale-105 transition-transform duration-300"
-      >
-        <CardHeader>
+      {/* Temporary replacement for Card component */}
+      <div className="h-full p-6 rounded-lg border border-border bg-card hover:scale-105 transition-transform duration-300">
+        <div className="mb-4">
           <div className="text-5xl mb-4">{feature.icon}</div>
-          <CardTitle className="text-xl">{feature.title}</CardTitle>
-          <CardDescription className="text-sm">
+          <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+          <p className="text-sm text-muted-foreground">
             {feature.description}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+          </p>
+        </div>
+        <div>
           <p className="text-sm text-muted-foreground leading-relaxed">
             {feature.content}
           </p>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }

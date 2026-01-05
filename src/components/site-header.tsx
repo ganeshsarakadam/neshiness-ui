@@ -3,43 +3,22 @@
 import * as React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 export function SiteHeader() {
   const [isDark, setIsDark] = React.useState(true);
-  const [currentTheme, setCurrentTheme] = React.useState("golden-hour");
 
   // Sync state with DOM on mount
   React.useEffect(() => {
     const htmlElement = document.documentElement;
     const hasDark = htmlElement.classList.contains("dark");
-    const hasGoldenHour = htmlElement.classList.contains("golden-hour");
 
     setIsDark(hasDark);
-    setCurrentTheme(hasGoldenHour ? "golden-hour" : "default");
   }, []);
 
   const toggleDarkMode = () => {
     const newDarkState = !isDark;
     setIsDark(newDarkState);
     document.documentElement.classList.toggle("dark");
-  };
-
-  const handleThemeChange = (theme: string) => {
-    setCurrentTheme(theme);
-    const isDarkMode = document.documentElement.classList.contains("dark");
-
-    if (theme === "default") {
-      document.documentElement.className = isDarkMode ? "dark" : "";
-    } else if (theme === "golden-hour") {
-      document.documentElement.className = `golden-hour${isDarkMode ? " dark" : ""}`;
-    }
   };
 
   return (
@@ -56,8 +35,8 @@ export function SiteHeader() {
           </Link>
 
           <div className="flex items-center gap-2">
-            {/* Theme Selector */}
-            <Select value={currentTheme} onValueChange={handleThemeChange}>
+            {/* Theme Selector - Temporarily disabled (Select component removed) */}
+            {/* <Select value={currentTheme} onValueChange={handleThemeChange}>
               <SelectTrigger size="sm" className="w-[140px]">
                 <SelectValue placeholder="Theme" />
               </SelectTrigger>
@@ -65,7 +44,7 @@ export function SiteHeader() {
                 <SelectItem value="default">Default</SelectItem>
                 <SelectItem value="golden-hour">🌅 Golden Hour</SelectItem>
               </SelectContent>
-            </Select>
+            </Select> */}
 
             {/* Dark Mode Toggle */}
             <Button
