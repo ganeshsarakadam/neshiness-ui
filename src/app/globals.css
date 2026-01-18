@@ -431,7 +431,9 @@
 
 /* Hero animation element styles with theme support */
 .hero-ambient-gradient {
-  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(240, 95, 4, 0.15) 0%, transparent 70%);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(240, 95, 4, 0.2) 0%, transparent 70%),
+    linear-gradient(to bottom, rgba(255, 248, 235, 0.8) 0%, rgba(255, 252, 245, 0.4) 100%);
 }
 
 .dark .hero-ambient-gradient {
@@ -439,7 +441,7 @@
 }
 
 .hero-center-orb {
-  background: radial-gradient(circle, rgba(240, 95, 4, 0.5) 0%, rgba(240, 95, 4, 0.25) 40%, transparent 75%);
+  background: radial-gradient(circle, rgba(240, 95, 4, 0.6) 0%, rgba(240, 95, 4, 0.3) 40%, transparent 75%);
   filter: blur(30px);
 }
 
@@ -448,7 +450,7 @@
 }
 
 .hero-ring {
-  border: 2px solid rgba(240, 95, 4, 0.35) !important;
+  border: 2px solid rgba(240, 95, 4, 0.45) !important;
 }
 
 .dark .hero-ring {
