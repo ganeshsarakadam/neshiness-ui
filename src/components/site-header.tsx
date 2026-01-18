@@ -26,12 +26,7 @@ export function SiteHeader() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between gap-4">
           <Link href="/" className="hover:opacity-80 transition-opacity">
-            <div>
-              <h1 className="text-2xl font-bold">Nesh UI</h1>
-              <p className="text-sm text-muted-foreground hidden sm:block">
-                Design System for AI Applications
-              </p>
-            </div>
+            <span className="text-xl font-bold">Nesh UI</span>
           </Link>
 
           <div className="flex items-center gap-2">
