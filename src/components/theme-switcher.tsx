@@ -4,22 +4,20 @@ import { Button } from "@/components/ui/button";
 
 export function ThemeSwitcher() {
   const switchToDefaultTheme = () => {
-    // Remove theme classes but keep dark mode if active
-    const isDark = document.documentElement.classList.contains('dark');
-    document.documentElement.className = isDark ? 'dark' : '';
-    console.log('Switched to default theme, classes:', document.documentElement.className);
+    if (typeof window === "undefined") return;
+    const isDark = document.documentElement.classList.contains("dark");
+    document.documentElement.className = isDark ? "dark" : "";
   };
 
   const switchToGoldenHourTheme = () => {
-    // Add golden-hour class and keep dark mode if active
-    const isDark = document.documentElement.classList.contains('dark');
-    document.documentElement.className = `golden-hour${isDark ? ' dark' : ''}`;
-    console.log('Switched to golden hour theme, classes:', document.documentElement.className);
+    if (typeof window === "undefined") return;
+    const isDark = document.documentElement.classList.contains("dark");
+    document.documentElement.className = `golden-hour${isDark ? " dark" : ""}`;
   };
 
   const toggleDarkMode = () => {
+    if (typeof window === "undefined") return;
     document.documentElement.classList.toggle("dark");
-    console.log('Toggled dark mode, classes:', document.documentElement.className);
   };
 
   return (

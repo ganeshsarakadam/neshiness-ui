@@ -30,17 +30,6 @@ export function SiteHeader() {
           </Link>
 
           <div className="flex items-center gap-2">
-            {/* Theme Selector - Temporarily disabled (Select component removed) */}
-            {/* <Select value={currentTheme} onValueChange={handleThemeChange}>
-              <SelectTrigger size="sm" className="w-[140px]">
-                <SelectValue placeholder="Theme" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="default">Default</SelectItem>
-                <SelectItem value="golden-hour">🌅 Golden Hour</SelectItem>
-              </SelectContent>
-            </Select> */}
-
             {/* Dark Mode Toggle */}
             <Button
               onClick={toggleDarkMode}

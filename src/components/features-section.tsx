@@ -2,13 +2,6 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-// import {
-//   Card,
-//   CardHeader,
-//   CardTitle,
-//   CardDescription,
-//   CardContent,
-// } from "@/components/ui/card";
 import { useIntersectionFade } from "@/hooks/use-intersection-fade";
 
 const features = [

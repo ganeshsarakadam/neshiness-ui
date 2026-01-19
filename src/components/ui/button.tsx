@@ -65,14 +65,17 @@ function MovingBorderEffect({
 
   // Get container dimensions and calculate path length
   React.useEffect(() => {
-    if (containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect();
+    const container = containerRef.current;
+    const path = pathRef.current;
+
+    if (container) {
+      const rect = container.getBoundingClientRect();
       setDimensions({ width: rect.width, height: rect.height });
     }
 
     // Measure path after SVG is rendered
-    if (pathRef.current) {
-      const length = pathRef.current.getTotalLength();
+    if (path) {
+      const length = path.getTotalLength();
       setPathLength(length);
     }
   }, [dimensions.width]); // Recalc when dimensions change
@@ -144,7 +147,7 @@ function MovingBorderEffect({
                 height={dimensions.height}
                 rx={dimensions.height / 2}
                 fill="none"
-                stroke="rgba(234, 179, 8, 0.6)"
+                style={{ stroke: "var(--moving-border-glow)" }}
                 strokeWidth={glowWidth}
                 strokeDasharray={`${calculatedSegmentLength} ${gapLength}`}
                 strokeDashoffset={dashOffset}
@@ -159,7 +162,7 @@ function MovingBorderEffect({
                 height={dimensions.height}
                 rx={dimensions.height / 2}
                 fill="none"
-                stroke="rgb(234, 179, 8)"
+                style={{ stroke: "var(--moving-border-color)" }}
                 strokeWidth={borderWidth}
                 strokeDasharray={`${calculatedSegmentLength} ${gapLength}`}
                 strokeDashoffset={dashOffset}

@@ -195,6 +195,16 @@
   /* Border Radius */
   --radius: 0.625rem;
 
+  /* Moving Border Animation Colors */
+  --moving-border-color: oklch(0.795 0.184 86.047);
+  --moving-border-glow: oklch(0.795 0.184 86.047 / 0.6);
+
+  /* Hero Animation Sizes */
+  --hero-sun-size: 400px;
+  --hero-sun-blur: 60px;
+  --hero-ring-size: 150px;
+  --hero-arc-size: 500px;
+
   /* Base Colors */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -257,6 +267,10 @@
 }
 
 .dark {
+  /* Moving Border Animation Colors */
+  --moving-border-color: oklch(0.85 0.2 86.047);
+  --moving-border-glow: oklch(0.85 0.2 86.047 / 0.6);
+
   /* Base Colors */
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -493,15 +507,15 @@
   position: absolute;
   top: 35%;
   left: 50%;
-  width: 400px;
-  height: 400px;
+  width: var(--hero-sun-size);
+  height: var(--hero-sun-size);
   background: radial-gradient(circle,
       oklch(0.7 0.22 45 / 0.6) 0%,
       oklch(0.664 0.1952 43.08 / 0.4) 30%,
       oklch(0.664 0.1952 43.08 / 0.1) 60%,
       transparent 80%);
   border-radius: 50%;
-  filter: blur(60px);
+  filter: blur(var(--hero-sun-blur));
   animation: sun-pulse 4s ease-in-out infinite;
 }
 
@@ -518,8 +532,8 @@
   position: absolute;
   top: 35%;
   left: 50%;
-  width: 150px;
-  height: 150px;
+  width: var(--hero-ring-size);
+  height: var(--hero-ring-size);
   border-radius: 50%;
   border: 2px solid oklch(0.664 0.1952 43.08 / 0.6);
   animation: ring-expand 4s ease-out infinite;
@@ -569,8 +583,8 @@
   position: absolute;
   top: 35%;
   left: 50%;
-  width: 500px;
-  height: 500px;
+  width: var(--hero-arc-size);
+  height: var(--hero-arc-size);
   border-radius: 50%;
   border: 1px solid oklch(0.664 0.1952 43.08 / 0.1);
   animation: slow-rotate 60s linear infinite;

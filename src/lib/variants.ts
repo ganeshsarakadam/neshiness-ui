@@ -40,8 +40,7 @@ export const colorVariants = {
 /**
  * Utility type for extracting variant props from a variant function
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type VariantPropsOf<T extends (...args: any) => any> = VariantProps<T>;
+export type VariantPropsOf<T extends (...args: never[]) => unknown> = VariantProps<T>;
 
 /**
  * Common base styles for components
