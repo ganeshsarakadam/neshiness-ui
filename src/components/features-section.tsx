@@ -91,6 +91,7 @@ function FeatureSectionHeader() {
           "text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4",
           titleFade.animationClass
         )}
+        style={titleFade.animationStyle}
       >
         Why Choose <span className="text-primary">Nesh UI</span>?
       </h2>
@@ -100,6 +101,7 @@ function FeatureSectionHeader() {
           "text-lg text-muted-foreground",
           descriptionFade.animationClass
         )}
+        style={descriptionFade.animationStyle}
       >
         A design system crafted specifically for the next generation of
         AI-powered applications
@@ -127,7 +129,7 @@ function FeatureCard({ feature, delay }: FeatureCardProps) {
   });
 
   return (
-    <div ref={cardFade.ref} className={cardFade.animationClass}>
+    <div ref={cardFade.ref} className={cardFade.animationClass} style={cardFade.animationStyle}>
       {/* Temporary replacement for Card component */}
       <div className="h-full p-6 rounded-lg border border-border bg-card hover:scale-105 transition-transform duration-300">
         <div className="mb-4">

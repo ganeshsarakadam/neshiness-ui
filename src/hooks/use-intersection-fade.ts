@@ -15,6 +15,7 @@ export interface IntersectionFadeResult<T extends HTMLElement> {
   ref: React.RefObject<T | null>;
   isVisible: boolean;
   animationClass: string;
+  animationStyle: React.CSSProperties;
 }
 
 /**
@@ -100,18 +101,21 @@ export function useIntersectionFade<T extends HTMLElement = HTMLDivElement>({
     right: "slide-in-from-left-6",
   };
 
-  // Generate animation class based on visibility and duration
+  // Generate animation class based on visibility
+  // Note: duration is applied via inline style since Tailwind can't detect dynamic classes
   const animationClass = isVisible
-    ? cn(
-        "animate-in fade-in",
-        directionClasses[direction],
-        `duration-${duration}`
-      )
+    ? cn("animate-in fade-in", directionClasses[direction])
     : "opacity-0 translate-y-6";
+
+  // Inline style for animation duration (Tailwind can't handle dynamic duration-${n})
+  const animationStyle: React.CSSProperties = isVisible
+    ? { animationDuration: `${duration}ms` }
+    : {};
 
   return {
     ref,
     isVisible,
     animationClass,
+    animationStyle,
   };
 }

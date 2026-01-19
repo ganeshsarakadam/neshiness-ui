@@ -83,14 +83,15 @@ export const staggerItem: Variants = {
 
 // ============================================================================
 // GLOW EFFECTS (Box Shadow based)
+// Note: These use color-mix() for proper CSS variable support with alpha
 // ============================================================================
 
 export const glowPulse: Variants = {
-  initial: { boxShadow: "0 0 0 0 rgba(var(--primary), 0)" },
+  initial: { boxShadow: "0 0 0 0 transparent" },
   animate: {
     boxShadow: [
-      "0 0 0 0 rgba(var(--primary), 0.4)",
-      "0 0 20px 10px rgba(var(--primary), 0)",
+      "0 0 0 0 color-mix(in oklch, var(--primary) 40%, transparent)",
+      "0 0 20px 10px transparent",
     ],
     transition: {
       duration: 2,
@@ -102,10 +103,10 @@ export const glowPulse: Variants = {
 
 export const hoverGlow = {
   rest: {
-    boxShadow: "0 0 0 0 rgba(var(--primary), 0)"
+    boxShadow: "0 0 0 0 transparent"
   },
   hover: {
-    boxShadow: "0 0 20px 5px rgba(var(--primary), 0.3)",
+    boxShadow: "0 0 20px 5px color-mix(in oklch, var(--primary) 30%, transparent)",
     transition: transitions.smooth
   },
 };

@@ -56,35 +56,52 @@ interface MovingBorderEffectProps {
 function MovingBorderEffect({
   borderWidth = 2,
   duration = 1500,
-  segmentLength = 0.50,
+  segmentLength = 0.5,
 }: MovingBorderEffectProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const pathRef = React.useRef<SVGRectElement>(null);
+  const glowRef = React.useRef<SVGRectElement>(null);
+  const strokeRef = React.useRef<SVGRectElement>(null);
   const [dimensions, setDimensions] = React.useState({ width: 0, height: 0 });
   const [pathLength, setPathLength] = React.useState(0);
 
-  // Get container dimensions and calculate path length
+  // Track dimensions with ResizeObserver
   React.useEffect(() => {
     const container = containerRef.current;
-    const path = pathRef.current;
+    if (!container) return;
 
-    if (container) {
+    const updateDimensions = () => {
       const rect = container.getBoundingClientRect();
       setDimensions({ width: rect.width, height: rect.height });
+    };
+
+    // Initial measurement
+    updateDimensions();
+
+    // Observe resize
+    const resizeObserver = new ResizeObserver(updateDimensions);
+    resizeObserver.observe(container);
+
+    return () => resizeObserver.disconnect();
+  }, []);
+
+  // Measure path length after SVG renders
+  React.useEffect(() => {
+    const path = pathRef.current;
+    if (path && dimensions.width > 0) {
+      setPathLength(path.getTotalLength());
     }
+  }, [dimensions]);
 
-    // Measure path after SVG is rendered
-    if (path) {
-      const length = path.getTotalLength();
-      setPathLength(length);
-    }
-  }, [dimensions.width]); // Recalc when dimensions change
-
-  // Animate stroke dashoffset to move border segment
-  const [dashOffset, setDashOffset] = React.useState(0);
-
+  // Animate stroke dashoffset using refs (no state updates in RAF)
   React.useEffect(() => {
     if (pathLength === 0) return;
+
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReducedMotion) return;
 
     let animationFrameId: number;
     let startTime: number | null = null;
@@ -95,9 +112,15 @@ function MovingBorderEffect({
 
       // Calculate progress (0 to 1, looping)
       const progress = (elapsed % duration) / duration;
+      const offset = -progress * pathLength;
 
-      // Animate dashoffset to move the stroke segment
-      setDashOffset(-progress * pathLength);
+      // Update DOM directly via refs (no React re-render)
+      if (glowRef.current) {
+        glowRef.current.style.strokeDashoffset = `${offset}`;
+      }
+      if (strokeRef.current) {
+        strokeRef.current.style.strokeDashoffset = `${offset}`;
+      }
 
       animationFrameId = requestAnimationFrame(animate);
     };
@@ -114,6 +137,7 @@ function MovingBorderEffect({
   const calculatedSegmentLength = pathLength * segmentLength;
   const gapLength = pathLength - calculatedSegmentLength;
   const glowWidth = borderWidth * 2;
+  const dashArray = `${calculatedSegmentLength} ${gapLength}`;
 
   return (
     <div ref={containerRef} className="absolute inset-0 pointer-events-none overflow-visible">
@@ -122,7 +146,7 @@ function MovingBorderEffect({
           className="absolute inset-0"
           width={dimensions.width}
           height={dimensions.height}
-          style={{ overflow: 'visible' }}
+          style={{ overflow: "visible" }}
         >
           {/* Invisible path for measurement */}
           <rect
@@ -136,11 +160,12 @@ function MovingBorderEffect({
             stroke="none"
           />
 
-          {/* Moving golden border segment */}
+          {/* Moving border segments */}
           {pathLength > 0 && (
             <>
               {/* Glow effect (blurred background) */}
               <rect
+                ref={glowRef}
                 x="0"
                 y="0"
                 width={dimensions.width}
@@ -149,13 +174,13 @@ function MovingBorderEffect({
                 fill="none"
                 style={{ stroke: "var(--moving-border-glow)" }}
                 strokeWidth={glowWidth}
-                strokeDasharray={`${calculatedSegmentLength} ${gapLength}`}
-                strokeDashoffset={dashOffset}
+                strokeDasharray={dashArray}
                 filter="blur(4px)"
                 strokeLinecap="round"
               />
               {/* Solid border segment */}
               <rect
+                ref={strokeRef}
                 x="0"
                 y="0"
                 width={dimensions.width}
@@ -164,8 +189,7 @@ function MovingBorderEffect({
                 fill="none"
                 style={{ stroke: "var(--moving-border-color)" }}
                 strokeWidth={borderWidth}
-                strokeDasharray={`${calculatedSegmentLength} ${gapLength}`}
-                strokeDashoffset={dashOffset}
+                strokeDasharray={dashArray}
                 strokeLinecap="round"
               />
             </>

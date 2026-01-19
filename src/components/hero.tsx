@@ -101,6 +101,7 @@ export function Hero({ size, alignment, className, ...props }: HeroProps) {
               "text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight",
               headlineFade.animationClass
             )}
+            style={headlineFade.animationStyle}
           >
             Build the Future of{" "}
             <span className="text-primary bg-clip-text">AI Interfaces</span>
@@ -113,6 +114,7 @@ export function Hero({ size, alignment, className, ...props }: HeroProps) {
               "text-xl md:text-2xl lg:text-3xl font-medium text-muted-foreground",
               taglineFade.animationClass
             )}
+            style={taglineFade.animationStyle}
           >
             A futuristic design system purpose-built for AI-powered applications
             and intelligent agent experiences
@@ -125,6 +127,7 @@ export function Hero({ size, alignment, className, ...props }: HeroProps) {
               "text-base md:text-lg text-muted-foreground max-w-2xl mx-auto",
               descriptionFade.animationClass
             )}
+            style={descriptionFade.animationStyle}
           >
             Nesh UI combines Golden Hour aesthetics with modern, accessible
             components. Build beautiful AI chat interfaces, agent dashboards,
@@ -133,7 +136,11 @@ export function Hero({ size, alignment, className, ...props }: HeroProps) {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-            <div ref={ctaPrimaryFade.ref} className={ctaPrimaryFade.animationClass}>
+            <div
+              ref={ctaPrimaryFade.ref}
+              className={ctaPrimaryFade.animationClass}
+              style={ctaPrimaryFade.animationStyle}
+            >
               <Button
                 size="lg"
                 className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-shadow"
@@ -143,7 +150,11 @@ export function Hero({ size, alignment, className, ...props }: HeroProps) {
               </Button>
             </div>
 
-            <div ref={ctaSecondaryFade.ref} className={ctaSecondaryFade.animationClass}>
+            <div
+              ref={ctaSecondaryFade.ref}
+              className={ctaSecondaryFade.animationClass}
+              style={ctaSecondaryFade.animationStyle}
+            >
               <Button
                 variant="outline"
                 size="lg"
