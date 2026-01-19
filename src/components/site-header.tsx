@@ -25,20 +25,20 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-border/40 backdrop-blur-sm bg-background/80 supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between gap-4">
-          <Link href="/" className="hover:opacity-80 transition-opacity">
-            <span className="text-xl font-bold">Nesh UI</span>
+          <Link href="/" className="hover:opacity-90 transition-opacity">
+            <span className="text-xl font-bold logo-shimmer">Nesh UI</span>
           </Link>
 
-          <div className="flex items-center gap-2">
+          <nav className="flex items-center gap-2" aria-label="Main navigation">
             {/* Dark Mode Toggle */}
             <Button
               onClick={toggleDarkMode}
               variant="outline"
               size="sm"
               className="px-3"
-              aria-label="Toggle dark mode"
+              aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
             >
-              {isDark ? "☀️" : "🌙"}
+              <span aria-hidden="true">{isDark ? "☀️" : "🌙"}</span>
             </Button>
 
             {/* Components Link */}
@@ -57,11 +57,12 @@ export function SiteHeader() {
                 href={process.env.NEXT_PUBLIC_STORYBOOK_URL || "http://localhost:6006"}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Playground (opens in new tab)"
               >
                 Playground
               </a>
             </Button>
-          </div>
+          </nav>
         </div>
       </div>
     </header>

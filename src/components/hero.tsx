@@ -81,12 +81,13 @@ export function Hero({ size, alignment, className, ...props }: HeroProps) {
       className={cn(heroVariants({ size, alignment }), className)}
       {...props}
     >
-      {/* Background Layer - Parallax 0.3x */}
+      {/* Background Layer - Parallax 0.3x (decorative, hidden from screen readers) */}
       <div
         className="absolute inset-0 bg-gradient-to-b from-background via-background to-muted/20 -z-10"
         style={backgroundParallax}
+        aria-hidden="true"
       >
-        {/* Decorative gradient orb */}
+        {/* Decorative gradient orbs */}
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-50" />
         <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl opacity-50" />
       </div>
@@ -160,9 +161,12 @@ export function Hero({ size, alignment, className, ...props }: HeroProps) {
                 size="lg"
                 className="text-lg px-8 py-6"
                 onClick={() => {
-                  document
-                    .getElementById("features")
-                    ?.scrollIntoView({ behavior: "smooth" });
+                  const prefersReducedMotion = window.matchMedia(
+                    "(prefers-reduced-motion: reduce)"
+                  ).matches;
+                  document.getElementById("features")?.scrollIntoView({
+                    behavior: prefersReducedMotion ? "auto" : "smooth",
+                  });
                 }}
               >
                 View Features
@@ -172,8 +176,11 @@ export function Hero({ size, alignment, className, ...props }: HeroProps) {
         </div>
       </div>
 
-      {/* Bottom fade effect */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+      {/* Bottom fade effect (decorative) */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent"
+        aria-hidden="true"
+      />
     </section>
   );
 }

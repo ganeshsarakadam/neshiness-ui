@@ -21,15 +21,34 @@ export function ThemeSwitcher() {
   };
 
   return (
-    <div className="flex gap-2 p-4 bg-card border border-border rounded-lg">
-      <Button onClick={switchToDefaultTheme} variant="outline" size="sm">
+    <div
+      className="flex gap-2 p-4 bg-card border border-border rounded-lg"
+      role="group"
+      aria-label="Theme controls"
+    >
+      <Button
+        onClick={switchToDefaultTheme}
+        variant="outline"
+        size="sm"
+        aria-label="Switch to default theme"
+      >
         Default
       </Button>
-      <Button onClick={switchToGoldenHourTheme} variant="outline" size="sm">
-        🌅 Golden Hour
+      <Button
+        onClick={switchToGoldenHourTheme}
+        variant="outline"
+        size="sm"
+        aria-label="Switch to golden hour theme"
+      >
+        <span aria-hidden="true">🌅</span> Golden Hour
       </Button>
-      <Button onClick={toggleDarkMode} variant="outline" size="sm">
-        ☀️ / 🌙
+      <Button
+        onClick={toggleDarkMode}
+        variant="outline"
+        size="sm"
+        aria-label="Toggle dark mode"
+      >
+        <span aria-hidden="true">☀️ / 🌙</span>
       </Button>
     </div>
   );

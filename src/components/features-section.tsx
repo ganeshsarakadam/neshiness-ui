@@ -129,11 +129,16 @@ function FeatureCard({ feature, delay }: FeatureCardProps) {
   });
 
   return (
-    <div ref={cardFade.ref} className={cardFade.animationClass} style={cardFade.animationStyle}>
-      {/* Temporary replacement for Card component */}
-      <div className="h-full p-6 rounded-lg border border-border bg-card hover:scale-105 transition-transform duration-300">
+    <article
+      ref={cardFade.ref}
+      className={cardFade.animationClass}
+      style={cardFade.animationStyle}
+    >
+      <div className="h-full p-6 rounded-lg border border-border bg-card transition-transform duration-300">
         <div className="mb-4">
-          <div className="text-5xl mb-4">{feature.icon}</div>
+          <div className="text-5xl mb-4" aria-hidden="true">
+            {feature.icon}
+          </div>
           <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
           <p className="text-sm text-muted-foreground">
             {feature.description}
@@ -145,6 +150,6 @@ function FeatureCard({ feature, delay }: FeatureCardProps) {
           </p>
         </div>
       </div>
-    </div>
+    </article>
   );
 }

@@ -205,33 +205,33 @@
   --hero-ring-size: 150px;
   --hero-arc-size: 500px;
 
-  /* Base Colors */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* Base Colors - Warm Ivory/Cream */
+  --background: oklch(0.96 0.025 80);
+  --foreground: oklch(0.18 0.03 40);
 
   /* Card Colors */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card: oklch(0.97 0.02 80);
+  --card-foreground: oklch(0.18 0.03 40);
 
   /* Popover Colors */
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
+  --popover: oklch(0.97 0.02 80);
+  --popover-foreground: oklch(0.18 0.03 40);
 
   /* Primary Brand Colors */
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.664 0.1952 43.08);
+  --primary-foreground: oklch(0.97 0.02 80);
 
   /* Secondary Colors */
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.92 0.025 75);
+  --secondary-foreground: oklch(0.25 0.03 40);
 
   /* Muted Colors */
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted: oklch(0.91 0.02 78);
+  --muted-foreground: oklch(0.45 0.04 45);
 
   /* Accent Colors */
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --accent: oklch(0.93 0.025 75);
+  --accent-foreground: oklch(0.25 0.03 40);
 
   /* Semantic Colors */
   --destructive: oklch(0.577 0.245 27.325);
@@ -244,9 +244,9 @@
   --info-foreground: oklch(0.985 0 0);
 
   /* Border & Input Colors */
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.88 0.02 75);
+  --input: oklch(0.92 0.015 80);
+  --ring: oklch(0.664 0.1952 43.08);
 
   /* Chart Colors */
   --chart-1: oklch(0.646 0.222 41.116);
@@ -256,13 +256,13 @@
   --chart-5: oklch(0.769 0.188 70.08);
 
   /* Sidebar Colors */
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
+  --sidebar: oklch(0.96 0.012 80);
+  --sidebar-foreground: oklch(0.18 0.02 45);
+  --sidebar-primary: oklch(0.664 0.1952 43.08);
+  --sidebar-primary-foreground: oklch(0.99 0.008 85);
+  --sidebar-accent: oklch(0.93 0.015 75);
+  --sidebar-accent-foreground: oklch(0.25 0.02 45);
+  --sidebar-border: oklch(0.88 0.02 75);
   --sidebar-ring: oklch(0.708 0 0);
 }
 
@@ -343,21 +343,74 @@
   }
 }
 
-.text-shimmer {
+/* Logo glass shimmer effect */
+@keyframes logo-shine {
+
+  0%,
+  100% {
+    background-position: 200% center;
+    filter: brightness(1);
+  }
+
+  50% {
+    background-position: -200% center;
+    filter: brightness(1.1);
+  }
+}
+
+/* Glassy orange logo with shimmer */
+.logo-shimmer {
   color: transparent;
   background-image: linear-gradient(120deg,
-      oklch(0.145 0 0) 30%,
-      oklch(0.65 0.16 45) 42%,
-      oklch(0.95 0.05 60) 50%,
-      oklch(0.65 0.16 45) 58%,
-      oklch(0.145 0 0) 70%);
+      oklch(0.55 0.2 40) 0%,
+      oklch(0.65 0.19 45) 30%,
+      oklch(0.72 0.15 50) 50%,
+      oklch(0.65 0.19 45) 70%,
+      oklch(0.55 0.2 40) 100%);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: logo-shine 15s ease-in-out infinite;
+  text-shadow: 0 0 15px oklch(0.55 0.2 40 / 0.4);
+  transition: all 0.3s ease;
+}
+
+.logo-shimmer:hover {
+  text-shadow: 0 0 30px oklch(0.664 0.1952 43.08 / 0.5);
+  filter: brightness(1.1);
+}
+
+.dark .logo-shimmer {
+  background-image: linear-gradient(120deg,
+      oklch(0.75 0.2 45) 0%,
+      oklch(0.85 0.15 55) 30%,
+      oklch(0.95 0.08 65) 50%,
+      oklch(0.85 0.15 55) 70%,
+      oklch(0.75 0.2 45) 100%);
+  text-shadow: 0 0 25px oklch(0.75 0.2 45 / 0.4);
+}
+
+.dark .logo-shimmer:hover {
+  text-shadow: 0 0 40px oklch(0.75 0.2 45 / 0.6);
+}
+
+.text-shimmer {
+  color: transparent;
+  /* Light mode: elegant gradient from burnt orange through gold to burnt orange */
+  background-image: linear-gradient(120deg,
+      oklch(0.55 0.18 40) 30%,
+      oklch(0.75 0.16 55) 42%,
+      oklch(0.65 0.2 45) 50%,
+      oklch(0.75 0.16 55) 58%,
+      oklch(0.55 0.18 40) 70%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
-  animation: shimmer 6s linear infinite;
+  animation: shimmer 8s ease-in-out infinite;
 }
 
 .dark .text-shimmer {
+  /* Dark mode: bright shimmer with white and warm accents */
   background-image: linear-gradient(120deg,
       oklch(0.985 0 0) 30%,
       oklch(0.7 0.18 50) 42%,

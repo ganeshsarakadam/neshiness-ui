@@ -250,6 +250,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         className={cn(buttonVariants({ variant, size, className }), "overflow-visible")}
         disabled={isLoading || disabled}
+        aria-busy={isLoading || undefined}
         {...props}
       >
         {/* Moving Border Effect - SVG Path Based */}
@@ -291,18 +292,36 @@ Button.displayName = "Button";
 // ============================================================================
 
 function Spinner() {
+  // Check for reduced motion preference
+  const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(false);
+
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
+
   return (
     <motion.svg
       className="h-4 w-4"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      animate={{ rotate: 360 }}
-      transition={{
-        duration: 1,
-        repeat: Infinity,
-        ease: "linear",
-      }}
+      role="status"
+      aria-label="Loading"
+      animate={prefersReducedMotion ? undefined : { rotate: 360 }}
+      transition={
+        prefersReducedMotion
+          ? undefined
+          : {
+              duration: 1,
+              repeat: Infinity,
+              ease: "linear",
+            }
+      }
     >
       <circle
         className="opacity-25"
