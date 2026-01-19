@@ -59,15 +59,15 @@ export default function DocsPage() {
 
                             <blockquote className="border-l-4 border-primary pl-6 py-2 my-8 bg-primary/5 rounded-r-lg">
                                 <p className="text-foreground italic text-lg">
-                                    "In the AI era, components should feel <strong>advanced</strong> and
-                                    <strong> intuitive</strong> — not just work, but inspire."
+                                    {`"In the AI era, components should feel `}<strong>advanced</strong>{` and`}
+                                    <strong>{` intuitive`}</strong>{` — not just work, but inspire."`}
                                 </p>
                             </blockquote>
 
                             <p className="text-muted-foreground leading-relaxed">
                                 That led me to create <span className="text-neshiness">Nesh UI</span>—a
                                 component library infused with my own taste (leaving a room to customize). Every component is crafted to
-                                feel like it belongs in the future we're building with AI, featuring
+                                feel like it belongs in the future we{`'`}re building with AI, featuring
                                 smooth animations, thoughtful micro-interactions, and a cohesive
                                 visual language.
                             </p>
